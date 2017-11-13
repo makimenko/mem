@@ -16,7 +16,6 @@
 	</properties>
 
 	<dependencies>
-
 	</dependencies>
 
 	<build>
@@ -36,7 +35,7 @@
 							<configOptions>
 								<sourceFolder>src/main/java</sourceFolder>
 								<groupId>com.makimenko.mem</groupId>
-								<artifactId>makimenko-mem-server</artifactId>
+								<artifactId>makimenko-mem-server-generated</artifactId>
 								<artifactVersion>${project.version}</artifactVersion>
 								<java8>true</java8>
 							</configOptions>
@@ -47,7 +46,28 @@
 					</execution>
 				</executions>
 			</plugin>
-
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>1.6.0</version>
+				<executions>
+					<execution>
+						<id>build-module</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<executable>mvn</executable>
+					<arguments>
+						<argument>clean</argument>
+						<argument>install</argument>
+					</arguments>
+					<workingDirectory>${basedir}/target/generated-sources/swagger</workingDirectory>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
