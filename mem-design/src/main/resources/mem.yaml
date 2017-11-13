@@ -1,0 +1,56 @@
+swagger: "2.0"
+info:
+  description: "Sample Description"
+  version: "1.0.0"
+  title: "Sample Project"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+basePath: "/"
+schemes:
+- "http"
+paths:
+  /profile/all:
+    get:
+      summary: "Returns all profiles"
+      description: "Returns a map of Profile entries"
+      operationId: "getAllProfiles"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Profile"
+  /profile:
+    post:
+      parameters:
+        - name: profile
+          in: body
+          description: Create new profile
+          schema:
+            $ref: '#/definitions/Profile'
+          required: true
+      responses:
+        200:
+          description: Make a new profile
+              
+definitions:
+  Profile:
+    type: "object"
+    required:
+      [userCode]
+    properties:
+      userCode:
+        type: string
+      name:
+        type: string
+      active:
+        type: boolean
+        default: true
+      birthDate:
+        type: string
+        format: date
