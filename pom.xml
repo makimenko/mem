@@ -3,10 +3,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.makimenko.mem</groupId>
-	<artifactId>makimenko-mem</artifactId>
+	<groupId>com.makimenko</groupId>
+	<artifactId>mem</artifactId>
 	<version>0.1.0.0-SNAPSHOT</version>
-	<name>MEM</name>
+	<name>Parent Project</name>
 	<packaging>pom</packaging>
 
 	<properties>
@@ -25,18 +25,18 @@
 		<dependencies>
 			<!-- Self dependencies -->
 			<dependency>
-				<groupId>com.makimenko.mem</groupId>
-				<artifactId>makimenko-mem-design</artifactId>
+				<groupId>com.makimenko</groupId>
+				<artifactId>mem-design</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>com.makimenko.mem</groupId>
-				<artifactId>makimenko-mem-server</artifactId>
+				<groupId>com.makimenko</groupId>
+				<artifactId>mem-server</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>com.makimenko.mem</groupId>
-				<artifactId>makimenko-mem-server-generated</artifactId>
+				<groupId>com.makimenko</groupId>
+				<artifactId>mem-server-generated</artifactId>
 				<version>${project.version}</version>
 				<exclusions>
 					<exclusion>
@@ -64,6 +64,40 @@
 				<groupId>org.slf4j</groupId>
 				<artifactId>log4j-over-slf4j</artifactId>
 				<version>1.7.25</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-web</artifactId>
+				<version>1.5.8.RELEASE</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-tomcat</artifactId>
+				<version>1.5.8.RELEASE</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>io.springfox</groupId>
+				<artifactId>springfox-swagger2</artifactId>
+				<version>2.7.0</version>
+			</dependency>
+			<dependency>
+				<groupId>io.springfox</groupId>
+				<artifactId>springfox-swagger-ui</artifactId>
+				<version>2.7.0</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.fasterxml.jackson.datatype</groupId>
+				<artifactId>jackson-datatype-joda</artifactId>
+				<version>2.9.2</version>
+			</dependency>
+			<dependency>
+				<groupId>joda-time</groupId>
+				<artifactId>joda-time</artifactId>
+				<version>2.9.9</version>
 			</dependency>
 
 		</dependencies>

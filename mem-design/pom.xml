@@ -5,12 +5,13 @@
 
 	<packaging>pom</packaging>
 	<parent>
-		<groupId>com.makimenko.mem</groupId>
-		<artifactId>makimenko-mem</artifactId>
+		<groupId>com.makimenko</groupId>
+		<artifactId>mem</artifactId>
 		<version>0.1.0.0-SNAPSHOT</version>
 	</parent>
-	<artifactId>makimenko-mem-design</artifactId>
-	
+	<artifactId>mem-design</artifactId>
+	<name>Swagger Design and Code Generator</name>
+
 	<build>
 		<plugins>
 			<plugin>
@@ -27,12 +28,12 @@
 							<language>spring</language>
 							<configOptions>
 								<sourceFolder>src/main/java</sourceFolder>
-								<groupId>com.makimenko.mem</groupId>
-								<artifactId>makimenko-mem-server-generated</artifactId>
+								<groupId>com.makimenko</groupId>
+								<artifactId>mem-server-generated</artifactId>
 								<artifactVersion>${project.version}</artifactVersion>
 								<basePackage>com.makimenko.mem.server</basePackage>
 								<configPackage>com.makimenko.mem.server.config</configPackage>
-								<!-- java8>true</java8-->
+								<!-- java8>true</java8 -->
 								<library>spring-mvc</library>
 							</configOptions>
 							<modelPackage>com.makimenko.mem.server.model</modelPackage>
@@ -59,7 +60,7 @@
 					<executable>mvn</executable>
 					<arguments>
 						<argument>clean</argument>
-						<argument>install</argument>						
+						<argument>install</argument>
 					</arguments>
 					<workingDirectory>${basedir}/target/generated-sources/swagger</workingDirectory>
 				</configuration>
