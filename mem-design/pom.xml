@@ -10,7 +10,7 @@
 		<version>0.1.0.0-SNAPSHOT</version>
 	</parent>
 	<artifactId>mem-design</artifactId>
-	<name>Swagger Design and Code Generator</name>
+	<name>Swagger Server and Client Code Generator</name>
 
 	<build>
 		<plugins>
@@ -20,12 +20,14 @@
 				<version>2.2.3</version>
 				<executions>
 					<execution>
+						<id>server</id>
 						<goals>
 							<goal>generate</goal>
 						</goals>
 						<configuration>
 							<inputSpec>${basedir}/src/main/resources/mem.yaml</inputSpec>
 							<language>spring</language>
+							<output>${basedir}/target/generated-sources/server</output>
 							<configOptions>
 								<sourceFolder>src/main/java</sourceFolder>
 								<groupId>com.makimenko</groupId>
@@ -33,12 +35,26 @@
 								<artifactVersion>${project.version}</artifactVersion>
 								<basePackage>com.makimenko.mem.server</basePackage>
 								<configPackage>com.makimenko.mem.server.config</configPackage>
-								<!-- java8>true</java8 -->
 								<library>spring-mvc</library>
 							</configOptions>
 							<modelPackage>com.makimenko.mem.server.model</modelPackage>
 							<apiPackage>com.makimenko.mem.server.api</apiPackage>
 							<invokerPackage>com.makimenko.mem.server.invoke</invokerPackage>
+						</configuration>
+					</execution>
+					<execution>
+						<id>client</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<inputSpec>${basedir}/src/main/resources/mem.yaml</inputSpec>
+							<language>typescript-angular2</language>
+							<output>${basedir}/target/generated-sources/client</output>
+							<configOptions>
+								<npmName>mem-client</npmName>
+								<npmVersion>0.0.1</npmVersion>
+							</configOptions>
 						</configuration>
 					</execution>
 				</executions>
@@ -54,16 +70,30 @@
 						<goals>
 							<goal>exec</goal>
 						</goals>
+						<configuration>
+							<executable>mvn</executable>
+							<arguments>
+								<argument>clean</argument>
+								<argument>install</argument>
+							</arguments>
+							<workingDirectory>${basedir}/target/generated-sources/server</workingDirectory>
+						</configuration>
+					</execution>
+					<execution>
+						<id>exec-npm-install</id>
+						<phase>generate-sources</phase>
+						<configuration>
+							<workingDirectory>${basedir}/target/generated-sources/client</workingDirectory>
+							<executable>npm</executable>
+							<arguments>
+								<argument>install</argument>
+							</arguments>
+						</configuration>
+						<goals>
+							<goal>exec</goal>
+						</goals>
 					</execution>
 				</executions>
-				<configuration>
-					<executable>mvn</executable>
-					<arguments>
-						<argument>clean</argument>
-						<argument>install</argument>
-					</arguments>
-					<workingDirectory>${basedir}/target/generated-sources/swagger</workingDirectory>
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>
