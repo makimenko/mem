@@ -4,6 +4,7 @@ import com.makimenko.mem.server.model.Profile;
 
 import io.swagger.annotations.*;
 
+import org.joda.time.LocalDate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -20,17 +21,25 @@ import java.util.List;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2017-11-14T16:50:28.561+02:00")
-
 @Controller
 public class ProfileApiController implements ProfileApi {
 
 	public ResponseEntity<List<Profile>> getAllProfiles() {
-		System.out.println("********* getAllProfiles");
 		List<Profile> list = new ArrayList<>();
 		Profile profile1 = new Profile();
 		profile1.setName("Michael");
+		profile1.setActive(true);
+		profile1.setBirthDate(new LocalDate());
+		profile1.setUserCode("user1");
 		list.add(profile1);
+
+		Profile profile2 = new Profile();
+		profile2.setName("Alex");
+		profile2.setActive(false);
+		profile2.setBirthDate(new LocalDate());
+		profile2.setUserCode("user2");
+		list.add(profile2);
+
 		ResponseEntity<List<Profile>> response = new ResponseEntity<>(list, HttpStatus.OK);
 		return response;
 	}
