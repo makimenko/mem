@@ -12,12 +12,19 @@
 	<artifactId>mem-design</artifactId>
 	<name>Swagger Server and Client Code Generator</name>
 
+	<properties>
+		<path.swagger>${basedir}/src/main/resources/mem.yaml</path.swagger>
+		<path.server.generated>${basedir}/target/generated-sources/mem-server-generated</path.server.generated>
+		<path.client.generated>${basedir}/target/generated-sources/mem-client-generated</path.client.generated>
+	</properties>
+
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>io.swagger</groupId>
 				<artifactId>swagger-codegen-maven-plugin</artifactId>
-				<version>2.2.3</version>
+				<!-- Wait for 2.2.3+ version (Important for Angular 4 HttpClient fix) -->
+				<version>2.3.0-SNAPSHOT</version>
 				<executions>
 					<execution>
 						<id>server</id>
@@ -25,9 +32,9 @@
 							<goal>generate</goal>
 						</goals>
 						<configuration>
-							<inputSpec>${basedir}/src/main/resources/mem.yaml</inputSpec>
+							<inputSpec>${path.swagger}</inputSpec>
 							<language>spring</language>
-							<output>${basedir}/target/generated-sources/server</output>
+							<output>${path.server.generated}</output>
 							<configOptions>
 								<sourceFolder>src/main/java</sourceFolder>
 								<groupId>com.makimenko</groupId>
@@ -48,11 +55,11 @@
 							<goal>generate</goal>
 						</goals>
 						<configuration>
-							<inputSpec>${basedir}/src/main/resources/mem.yaml</inputSpec>
-							<language>typescript-angular2</language>
-							<output>${basedir}/target/generated-sources/client</output>
+							<inputSpec>${path.swagger}</inputSpec>
+							<language>typescript-angular</language>
+							<output>${path.client.generated}</output>
 							<configOptions>
-								<npmName>mem-client</npmName>
+								<npmName>mem-client-generated</npmName>
 								<npmVersion>0.0.1</npmVersion>
 							</configOptions>
 						</configuration>
@@ -76,14 +83,14 @@
 								<argument>clean</argument>
 								<argument>install</argument>
 							</arguments>
-							<workingDirectory>${basedir}/target/generated-sources/server</workingDirectory>
+							<workingDirectory>${path.server.generated}</workingDirectory>
 						</configuration>
 					</execution>
 					<execution>
 						<id>exec-npm-install</id>
 						<phase>generate-sources</phase>
 						<configuration>
-							<workingDirectory>${basedir}/target/generated-sources/client</workingDirectory>
+							<workingDirectory>${path.client.generated}</workingDirectory>
 							<executable>npm</executable>
 							<arguments>
 								<argument>install</argument>
