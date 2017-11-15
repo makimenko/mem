@@ -1,5 +1,6 @@
 package com.makimenko.mem.server.api;
 
+import com.makimenko.mem.server.api.ProfileApi;
 import com.makimenko.mem.server.model.Profile;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.*;
@@ -8,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -25,6 +27,7 @@ import java.util.List;
 
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2017-11-15T15:41:35.284+02:00")
 
+@CrossOrigin(origins = "*")
 @Controller
 public class ProfileApiController implements ProfileApi {
 
@@ -41,18 +44,6 @@ public class ProfileApiController implements ProfileApi {
 	}
 
 	public ResponseEntity<List<Profile>> getAllProfiles() {
-		String accept = request.getHeader("Accept");
-		if (accept != null && accept.contains("application/json")) {
-			try {
-				return new ResponseEntity<List<Profile>>(objectMapper.readValue(
-						"[ {  \"name\" : \"name\",  \"active\" : true,  \"birthDate\" : \"2000-01-23\",  \"userCode\" : \"userCode\"}, {  \"name\" : \"name\",  \"active\" : true,  \"birthDate\" : \"2000-01-23\",  \"userCode\" : \"userCode\"} ]",
-						List.class), HttpStatus.NOT_IMPLEMENTED);
-			} catch (IOException e) {
-				log.error("Couldn't serialize response for content type application/json", e);
-				return new ResponseEntity<List<Profile>>(HttpStatus.INTERNAL_SERVER_ERROR);
-			}
-		}
-
 		List<Profile> list = new ArrayList<>();
 		Profile profile1 = new Profile();
 		profile1.setName("Michael");
