@@ -8,14 +8,13 @@
 		<version>0.1.0.0-SNAPSHOT</version>
 	</parent>
 	<artifactId>mem-server</artifactId>
-	<name>Spring Boot Server</name>
+	<name>Server Application (Spring Boot)</name>
 
 	<dependencies>
 		<dependency>
 			<groupId>com.makimenko</groupId>
 			<artifactId>mem-server-generated</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -26,11 +25,19 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
 		</dependency>
 	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
 
 </project>
