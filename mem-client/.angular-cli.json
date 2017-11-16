@@ -6,7 +6,7 @@
   "apps": [
     {
       "root": "src",
-      "outDir": "dist",
+      "outDir": "../mem-server/src/main/resources/static",
       "assets": [
         "assets",
         "favicon.ico"

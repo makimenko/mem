@@ -15,7 +15,8 @@
 	<properties>
 		<path.swagger>${basedir}/src/main/resources/mem.yaml</path.swagger>
 		<path.server.generated>${basedir}/target/generated-sources/mem-server-generated</path.server.generated>
-		<path.client.generated>${basedir}/../mem-client/src/app/api-generated</path.client.generated>
+		<path.client>${basedir}/../mem-client</path.client>
+		<path.client.api.generated>${path.client}/src/app/api-generated</path.client.api.generated>
 	</properties>
 
 	<build>
@@ -55,7 +56,7 @@
 						<configuration>
 							<inputSpec>${path.swagger}</inputSpec>
 							<language>typescript-angular</language>
-							<output>${path.client.generated}</output>
+							<output>${path.client.api.generated}</output>
 							<configOptions>
 								<npmName>mem-client-generated</npmName>
 								<npmVersion>0.0.1</npmVersion>
@@ -83,11 +84,11 @@
 							<workingDirectory>${path.server.generated}</workingDirectory>
 						</configuration>
 					</execution>
-					<!-- execution>
+					<execution>
 						<id>exec-npm-install</id>
 						<phase>generate-sources</phase>
 						<configuration>
-							<workingDirectory>${path.client.generated}</workingDirectory>
+							<workingDirectory>${path.client}</workingDirectory>
 							<executable>npm</executable>
 							<arguments>
 								<argument>install</argument>
@@ -96,7 +97,21 @@
 						<goals>
 							<goal>exec</goal>
 						</goals>
-					</execution -->
+					</execution>					
+					<execution>
+						<id>exec-ng-build</id>
+						<phase>generate-sources</phase>
+						<configuration>
+							<workingDirectory>${path.client}</workingDirectory>
+							<executable>ng</executable>
+							<arguments>
+								<argument>build</argument>
+							</arguments>
+						</configuration>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+					</execution>
 				</executions>
 			</plugin>
 		</plugins>
