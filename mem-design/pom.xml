@@ -15,7 +15,7 @@
 	<properties>
 		<path.swagger>${basedir}/src/main/resources/mem.yaml</path.swagger>
 		<path.server.generated>${basedir}/target/generated-sources/mem-server-generated</path.server.generated>
-		<path.client.generated>${basedir}/target/generated-sources/mem-client-generated</path.client.generated>
+		<path.client.generated>${basedir}/../mem-client/src/app/api-generated</path.client.generated>
 	</properties>
 
 	<build>

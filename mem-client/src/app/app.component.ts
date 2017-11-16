@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DefaultService, Profile } from "./api/index";
+import { DefaultService, Profile } from "./api-generated";
 
 @Component({
   selector: 'app-root',
