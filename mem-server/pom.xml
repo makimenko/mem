@@ -29,6 +29,15 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
 		</dependency>
+
+
+		<dependency>
+			<!-- TODO: Can't understand why it's needed on some PCs -->
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>6.0.4.Final</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
