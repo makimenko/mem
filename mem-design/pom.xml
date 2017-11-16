@@ -71,7 +71,7 @@
 				<executions>
 					<execution>
 						<id>build-module</id>
-						<phase>compile</phase>
+						<phase>generate-sources</phase>
 						<goals>
 							<goal>exec</goal>
 						</goals>
@@ -97,10 +97,10 @@
 						<goals>
 							<goal>exec</goal>
 						</goals>
-					</execution>					
+					</execution>
 					<execution>
 						<id>exec-ng-build</id>
-						<phase>generate-sources</phase>
+						<phase>prepare-package</phase>
 						<configuration>
 							<workingDirectory>${path.client}</workingDirectory>
 							<executable>ng</executable>

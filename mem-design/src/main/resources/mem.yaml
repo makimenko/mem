@@ -1,56 +1,75 @@
 swagger: "2.0"
 info:
-  description: "Sample Description"
-  version: "1.0.0"
-  title: "Sample Project"
+  description: "Sample online questionarie with funny life memories"
+  version: "0.1.1"
+  title: "Memory Quiz"
   license:
     name: "Apache 2.0"
     url: "http://www.apache.org/licenses/LICENSE-2.0.html"
 basePath: "/"
+tags:
+  - name: question
+    description: "Everything related to Questions"
 schemes:
 - "http"
 paths:
-  /profile/all:
+  /events:
     get:
-      summary: "Returns all profiles"
-      description: "Returns a map of Profile entries"
-      operationId: "getAllProfiles"
+      tags:
+        - question
+      summary: Finds all questions
+      description: "Some description"
       produces:
-      - "application/json"
-      parameters: []
+        - application/json
       responses:
-        200:
-          description: "successful operation"
+        "200":
+          description: successful operation
           schema:
             type: array
             items:
-              $ref: "#/definitions/Profile"
-  /profile:
-    post:
-      parameters:
-        - name: profile
-          in: body
-          description: Create new profile
-          schema:
-            $ref: '#/definitions/Profile'
-          required: true
-      responses:
-        200:
-          description: Make a new profile
-              
+              $ref: "#/definitions/Event"
 definitions:
-  Profile:
+  BaseEntity:
     type: "object"
-    required:
-      [userCode]
     properties:
-      userCode:
+      uuid:
         type: string
       name:
         type: string
-      active:
-        type: boolean
-        default: true
-      birthDate:
-        type: string
-        format: date
+  Event:
+    allOf:
+      - $ref: '#/definitions/BaseEntity'
+      - properties:
+          groups:
+            type: array
+            items: 
+              $ref: '#/definitions/Group'
+  Group:
+    allOf:
+      - $ref: '#/definitions/BaseEntity'
+      - properties:
+          contents:
+            type: array
+            items: 
+              $ref: '#/definitions/Content'
+          questions:
+            type: array
+            items: 
+              $ref: '#/definitions/Question'
+  Content:
+    allOf:
+      - $ref: '#/definitions/BaseEntity'
+  Question:
+    allOf:
+      - $ref: '#/definitions/BaseEntity'
+      - properties:
+          answers:
+            type: array
+            items:
+              $ref: '#/definitions/Answer'
+  Answer:
+    allOf:
+      - $ref: '#/definitions/BaseEntity'
+      - properties:
+          exepcted:
+            type: boolean

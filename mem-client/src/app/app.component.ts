@@ -1,25 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import { DefaultService, Profile } from "./api-generated";
+import { QuestionService, Event } from "./api-generated";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [DefaultService]
+  providers: [QuestionService]
 })
 export class AppComponent implements OnInit {
   title = 'app';
 
-  profiles: Profile[];
+  profiles: Event[];
 
-  constructor(private defaultService: DefaultService) { }
+  constructor(private questionService: QuestionService) { }
 
   ngOnInit() {
     this.loadProfiles();
   }
 
   loadProfiles() {
-    this.defaultService.getAllProfiles().subscribe(i => this.profiles = i);
+    this.questionService.eventsGet().subscribe(i => this.profiles = i);
   }
 
 }
