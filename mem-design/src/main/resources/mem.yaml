@@ -28,6 +28,24 @@ paths:
             type: array
             items:
               $ref: "#/definitions/Event"
+  /event:
+    post:
+        description: "Creates a new event"
+        produces: 
+          - "application/json"
+        parameters: 
+          - 
+            name: "event"
+            in: "body"
+            description: "Event to add to the database"
+            required: true
+            schema: 
+              $ref: "#/definitions/Event"
+        responses: 
+          "200":
+            description: "event response"
+            schema: 
+              $ref: "#/definitions/Event"
 definitions:
   BaseEntity:
     type: "object"
@@ -39,6 +57,7 @@ definitions:
   Event:
     allOf:
       - $ref: '#/definitions/BaseEntity'
+      - type: object
       - properties:
           groups:
             type: array

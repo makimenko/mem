@@ -26,9 +26,9 @@ import java.util.List;
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2017-11-17T15:15:20.914+02:00")
 
 @Controller
-public class EventsApiController implements EventsApi {
+public class EventApiController implements EventApi {
 
-	private static final Logger log = LoggerFactory.getLogger(EventsApiController.class);
+	private static final Logger log = LoggerFactory.getLogger(EventApiController.class);
 
 	private final ObjectMapper objectMapper;
 
@@ -38,17 +38,19 @@ public class EventsApiController implements EventsApi {
 	private DatabaseDao databaseDao;
 
 	@org.springframework.beans.factory.annotation.Autowired
-	public EventsApiController(ObjectMapper objectMapper, HttpServletRequest request) {
+	public EventApiController(ObjectMapper objectMapper, HttpServletRequest request) {
 		this.objectMapper = objectMapper;
 		this.request = request;
 	}
 
-	public ResponseEntity<List<Event>> eventsGet() {
+	public ResponseEntity<Event> eventPost(
+			@ApiParam(value = "Event to add to the database", required = true) @Valid @RequestBody Event event) {
 		String accept = request.getHeader("Accept");
 		if (accept != null && accept.contains("application/json")) {
-			return new ResponseEntity<List<Event>>(databaseDao.findEvents(), HttpStatus.OK);
+			databaseDao.insertEvent(event);
+			return new ResponseEntity<Event>(HttpStatus.OK);
 		} else {
-			return new ResponseEntity<List<Event>>(HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<Event>(HttpStatus.BAD_REQUEST);
 		}
 	}
 

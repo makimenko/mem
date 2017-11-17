@@ -86,7 +86,7 @@
 					</execution>
 					<execution>
 						<id>exec-npm-install</id>
-						<phase>generate-sources</phase>
+						<phase>compile</phase>
 						<configuration>
 							<workingDirectory>${path.client}</workingDirectory>
 							<executable>npm</executable>
@@ -106,6 +106,10 @@
 							<executable>ng</executable>
 							<arguments>
 								<argument>build</argument>
+								<argument>--env=prod</argument>
+								<argument>--build-optimizer</argument>
+								<argument>--aot</argument>
+								<argument>--prod</argument>
 							</arguments>
 						</configuration>
 						<goals>
