@@ -4,6 +4,9 @@ import { AppComponent } from './app.component';
 import { HttpClientModule, HttpClient } from "@angular/common/http";
 import { ApiModule, BASE_PATH } from "./api-generated";
 import { environment } from "../environments/environment";
+import { MaterialDesignModule } from './material-design/material-design.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -11,7 +14,10 @@ import { environment } from "../environments/environment";
   ],
   imports: [
     BrowserModule,
-    ApiModule
+    BrowserAnimationsModule,
+    FormsModule,
+    ApiModule,
+    MaterialDesignModule
   ],
   providers: [
     { provide: BASE_PATH, useValue: environment.servicebaseUrl }

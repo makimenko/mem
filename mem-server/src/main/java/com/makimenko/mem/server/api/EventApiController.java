@@ -48,6 +48,7 @@ public class EventApiController implements EventApi {
 		String accept = request.getHeader("Accept");
 		if (accept != null && accept.contains("application/json")) {
 			databaseDao.insertEvent(event);
+			databaseDao.save();
 			return new ResponseEntity<Event>(HttpStatus.OK);
 		} else {
 			return new ResponseEntity<Event>(HttpStatus.BAD_REQUEST);

@@ -1,5 +1,6 @@
 package com.makimenko.mem.server;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
@@ -25,12 +26,14 @@ public class DatabaseTests {
 
 	@Test
 	public void testSave() {
-		System.out.println("Saving....");
+		int before = dao.getEvents().size();
+
 		Event event = new Event();
 		event.setName("My super event");
 		dao.insertEvent(event);
+		dao.save();
 
-		System.out.println("**** " + dao.findEvents().size());
-		assertTrue(dao.findEvents().size() > 0);
+		assertEquals(before + 1, dao.getEvents().size());
 	}
+
 }

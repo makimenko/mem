@@ -44,12 +44,8 @@ public class EventsApiController implements EventsApi {
 	}
 
 	public ResponseEntity<List<Event>> eventsGet() {
-		String accept = request.getHeader("Accept");
-		if (accept != null && accept.contains("application/json")) {
-			return new ResponseEntity<List<Event>>(databaseDao.findEvents(), HttpStatus.OK);
-		} else {
-			return new ResponseEntity<List<Event>>(HttpStatus.BAD_REQUEST);
-		}
+		log.info("eventsGet...");
+		return new ResponseEntity<List<Event>>(databaseDao.getEvents(), HttpStatus.OK);
 	}
 
 }
