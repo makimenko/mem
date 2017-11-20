@@ -18,7 +18,7 @@ paths:
       tags:
         - question
       summary: Finds all questions
-      description: "Some description"
+      description: "Finds all questions"
       produces:
         - application/json
       responses:
@@ -29,23 +29,44 @@ paths:
             items:
               $ref: "#/definitions/Event"
   /event:
+    get:
+      tags:
+        - question
+      summary: Return event detals
+      description: "Return event detals"
+      produces:
+        - application/json
+      parameters: 
+        - 
+          name: uuid
+          in: "query"
+          description: "Unique identifier of Event"
+          required: true
+          type: "string"
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: "#/definitions/Event"
     post:
-        description: "Creates a new event"
-        produces: 
-          - "application/json"
-        parameters: 
-          - 
-            name: "event"
-            in: "body"
-            description: "Event to add to the database"
-            required: true
-            schema: 
-              $ref: "#/definitions/Event"
-        responses: 
-          "200":
-            description: "event response"
-            schema: 
-              $ref: "#/definitions/Event"
+      tags:
+        - question
+      description: "Creates a new event"
+      produces: 
+        - "application/json"
+      parameters: 
+        - 
+          name: "event"
+          in: "body"
+          description: "Event to add to the database"
+          required: true
+          schema: 
+            $ref: "#/definitions/Event"
+      responses: 
+        "200":
+          description: "event response"
+          schema: 
+            $ref: "#/definitions/Event"
 definitions:
   BaseEntity:
     type: "object"

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { QuestionService, Event } from '../../api-generated/index';
 
 @Component({
   selector: 'app-events',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventsComponent implements OnInit {
 
-  constructor() { }
+  events: Event[];
+
+  constructor(public questionService: QuestionService) { }
 
   ngOnInit() {
+    this.loadEvents();
   }
 
+  loadEvents() {
+    this.questionService.eventsGet().subscribe(i => this.events = i);
+  }
+  
 }

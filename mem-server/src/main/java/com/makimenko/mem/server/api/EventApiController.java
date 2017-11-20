@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -25,6 +26,7 @@ import java.util.List;
 
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2017-11-17T15:15:20.914+02:00")
 
+@CrossOrigin("*")
 @Controller
 public class EventApiController implements EventApi {
 
@@ -49,9 +51,20 @@ public class EventApiController implements EventApi {
 		if (accept != null && accept.contains("application/json")) {
 			databaseDao.insertEvent(event);
 			databaseDao.save();
-			return new ResponseEntity<Event>(HttpStatus.OK);
+			return new ResponseEntity<Event>(event, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<Event>(HttpStatus.BAD_REQUEST);
+		}
+	}
+
+	@Override
+	public ResponseEntity<Event> eventGet(String uuid) {
+		Event event = databaseDao.getEvents().stream().filter(i -> i.getUuid().equals(uuid)).findFirst().get();
+		if (event == null) {
+			log.warn("Event {} not found!", uuid);
+			return new ResponseEntity<Event>(HttpStatus.NOT_FOUND);
+		} else {
+			return new ResponseEntity<Event>(event, HttpStatus.OK);
 		}
 	}
 

@@ -1,0 +1,17 @@
+<mat-progress-bar *ngIf="busy" mode="indeterminate"></mat-progress-bar>
+
+<div *ngIf="event" class="container">   
+
+  <mat-dialog-content>
+    <mat-form-field>
+      <input matInput [(ngModel)]="event.name">
+    </mat-form-field>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button mat-button (click)="save()">
+      <mat-icon>save</mat-icon> Save
+    </button>
+  </mat-dialog-actions>
+
+</div>
