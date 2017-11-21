@@ -50,7 +50,6 @@ public class EventApiController implements EventApi {
 		this.request = request;
 	}
 
-	
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<Void> eventUuidDelete(
 			@ApiParam(value = "Event UUID to add to the database", required = true) @PathVariable("uuid") String uuid) {
@@ -73,13 +72,14 @@ public class EventApiController implements EventApi {
 		} catch (MemNoDataFoundException e) {
 			return new ResponseEntity<Event>(HttpStatus.NOT_FOUND);
 		}
-	}	
+	}
 
-    public ResponseEntity<Event> eventUuidPost(@ApiParam(value = "Event to add to the database",required=true) @PathVariable("uuid") String uuid,@ApiParam(value = "Event to add to the database" ,required=true )  @Valid @RequestBody Event event) {
-    	String accept = request.getHeader("Accept");
-		if (accept != null && accept.contains("application/json")) {
+	public ResponseEntity<Event> eventPost(
+			@ApiParam(value = "Event to add to the database", required = true) @Valid @RequestBody Event event) {
+		String accept = request.getHeader("Accept");
+		if (accept != null && accept.contains("application/json") && event != null) {
 			try {
-				if (Strings.isNullOrEmpty(uuid)) {
+				if (Strings.isNullOrEmpty(event.getUuid())) {
 					databaseDao.insertEvent(event);
 				} else {
 					databaseDao.updateEvent(event);
@@ -92,7 +92,6 @@ public class EventApiController implements EventApi {
 		} else {
 			return new ResponseEntity<Event>(HttpStatus.BAD_REQUEST);
 		}
-    }
-    
+	}
 
 }

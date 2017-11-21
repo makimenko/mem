@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { QuestionService, Event } from '../../api-generated';
+import * as API from '../../api-generated';
 
 @Component({
   selector: 'app-event-detail',
@@ -9,12 +9,12 @@ import { QuestionService, Event } from '../../api-generated';
 })
 export class EventDetailComponent implements OnInit {
 
-  event: Event;
+  event: API.Event;
 
   busy: boolean;
 
   constructor(private route: ActivatedRoute,
-    private questionService: QuestionService
+    private questionService: API.QuestionService
   ) { }
 
   ngOnInit() {
@@ -22,25 +22,34 @@ export class EventDetailComponent implements OnInit {
   }
 
   loadEvent(): void {
-    this.busy = true;
+
     console.log("Loading...")
     const uuid = this.route.snapshot.paramMap.get('uuid');
     console.log("UUID=" + uuid);
-    this.questionService.eventUuidGet(uuid)
-      .subscribe(event => {
-        this.event = event;
-        this.busy = false
-      });
+
+    if (uuid == "new") {
+      console.log("Creating new event");
+      this.event = {};
+    } else {
+      console.log("Retrieving event from server");
+      this.busy = true;
+      this.questionService.eventUuidGet(uuid)
+        .subscribe(event => {
+          this.event = event;
+          this.busy = false
+        });
+    }
+
   }
 
   save() {
-    console.log("Update existing event...");
+    console.log("Save event");
     this.busy = true;
-    this.questionService.eventUuidPost(this.event.uuid, this.event).subscribe(event => {
+    this.questionService.eventPost(this.event).subscribe(event => {
       this.busy = false;
-    }
-    );
-
+      this.event = event;
+      console.log("Event stored: " + this.event.uuid);
+    });
   }
 
 }

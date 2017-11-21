@@ -48,31 +48,6 @@ paths:
           description: successful operation
           schema:
             $ref: "#/definitions/Event"
-    post:
-      tags:
-        - question
-      description: "Creates a new event"
-      produces: 
-        - "application/json"
-      parameters: 
-        - 
-          name: uuid
-          in: path
-          description: "Event to add to the database"
-          required: true
-          type: string
-        - 
-          name: "event"
-          in: "body"
-          description: "Event to add to the database"
-          required: true
-          schema: 
-            $ref: "#/definitions/Event"
-      responses: 
-        "200":
-          description: "event response"
-          schema: 
-            $ref: "#/definitions/Event"
     delete:
       tags:
         - question
@@ -86,7 +61,59 @@ paths:
       responses: 
         "200":
           description: "event response"
+  /event:
+    post:
+      tags:
+        - question
+      description: "Creates a new event"
+      produces: 
+        - "application/json"
+      parameters: 
+        - 
+          name: "event"
+          in: "body"
+          description: "Event to add to the database"
+          required: true
+          schema: 
+            $ref: "#/definitions/Event"
+      responses: 
+        "200":
+          description: "event response"
+          schema: 
+            $ref: "#/definitions/Event"
+  /upload/image:
+    post:
+      tags:
+        - upload
+      description: "Upload image file to server"
+      consumes:
+        - multipart/form-data
+      produces: 
+        - "application/json"
+      parameters:
+      - name: name
+        in: formData
+        description: The file name
+        required: true
+        type: string
+      - name: image
+        in: formData
+        description: The image data
+        required: true
+        type: file
+        minLength: 1
+        maxLength: 5000000  # ~5MB
+      responses:
+        default:
+          description: Returns the photo location on server
+          schema:
+            $ref: "#/definitions/UploadLocation"
 definitions:
+  UploadLocation:
+    type: "object"
+    properties:
+      url:
+        type: string
   BaseEntity:
     type: "object"
     properties:
