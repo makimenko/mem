@@ -1,8 +1,12 @@
 package com.makimenko.mem.server.api;
 
 import com.makimenko.mem.server.dao.DatabaseDao;
+import com.makimenko.mem.server.exception.MemException;
+import com.makimenko.mem.server.exception.MemNoDataFoundException;
 import com.makimenko.mem.server.model.Event;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.base.Strings;
+
 import io.swagger.annotations.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.*;
@@ -45,27 +50,49 @@ public class EventApiController implements EventApi {
 		this.request = request;
 	}
 
-	public ResponseEntity<Event> eventPost(
-			@ApiParam(value = "Event to add to the database", required = true) @Valid @RequestBody Event event) {
-		String accept = request.getHeader("Accept");
-		if (accept != null && accept.contains("application/json")) {
-			databaseDao.insertEvent(event);
+	
+	@ResponseStatus(HttpStatus.CREATED)
+	public ResponseEntity<Void> eventUuidDelete(
+			@ApiParam(value = "Event UUID to add to the database", required = true) @PathVariable("uuid") String uuid) {
+		try {
+			Event event = databaseDao.findEvent(uuid);
+			log.debug("Removing event: {} - {}", event.getUuid(), event.getName());
+			databaseDao.getEvents().remove(event);
 			databaseDao.save();
-			return new ResponseEntity<Event>(event, HttpStatus.OK);
-		} else {
-			return new ResponseEntity<Event>(HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+		} catch (MemNoDataFoundException e) {
+			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
 		}
 	}
 
-	@Override
-	public ResponseEntity<Event> eventGet(String uuid) {
-		Event event = databaseDao.getEvents().stream().filter(i -> i.getUuid().equals(uuid)).findFirst().get();
-		if (event == null) {
-			log.warn("Event {} not found!", uuid);
-			return new ResponseEntity<Event>(HttpStatus.NOT_FOUND);
-		} else {
+	public ResponseEntity<Event> eventUuidGet(
+			@ApiParam(value = "Unique identifier of Event", required = true) @PathVariable("uuid") String uuid) {
+		try {
+			Event event = databaseDao.findEvent(uuid);
 			return new ResponseEntity<Event>(event, HttpStatus.OK);
+		} catch (MemNoDataFoundException e) {
+			return new ResponseEntity<Event>(HttpStatus.NOT_FOUND);
 		}
-	}
+	}	
+
+    public ResponseEntity<Event> eventUuidPost(@ApiParam(value = "Event to add to the database",required=true) @PathVariable("uuid") String uuid,@ApiParam(value = "Event to add to the database" ,required=true )  @Valid @RequestBody Event event) {
+    	String accept = request.getHeader("Accept");
+		if (accept != null && accept.contains("application/json")) {
+			try {
+				if (Strings.isNullOrEmpty(uuid)) {
+					databaseDao.insertEvent(event);
+				} else {
+					databaseDao.updateEvent(event);
+				}
+				databaseDao.save();
+				return new ResponseEntity<Event>(event, HttpStatus.OK);
+			} catch (MemNoDataFoundException e) {
+				return new ResponseEntity<Event>(HttpStatus.NOT_FOUND);
+			}
+		} else {
+			return new ResponseEntity<Event>(HttpStatus.BAD_REQUEST);
+		}
+    }
+    
 
 }

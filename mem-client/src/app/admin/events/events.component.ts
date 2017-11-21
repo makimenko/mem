@@ -19,5 +19,14 @@ export class EventsComponent implements OnInit {
   loadEvents() {
     this.questionService.eventsGet().subscribe(i => this.events = i);
   }
+
+  delete(event:Event )  {
+    console.log("Deleting event: "+event.uuid);
+    this.questionService.eventUuidDelete(event.uuid).subscribe(i => {
+      console.log("Deleted, reloading events...");
+      this.loadEvents();
+    }
+    );
+  }
   
 }

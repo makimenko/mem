@@ -46,7 +46,7 @@ public class EventsApiController implements EventsApi {
 	}
 
 	public ResponseEntity<List<Event>> eventsGet() {
-		log.info("eventsGet...");
+		log.info("Returning all events");
 		return new ResponseEntity<List<Event>>(databaseDao.getEvents(), HttpStatus.OK);
 	}
 

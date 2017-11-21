@@ -28,7 +28,7 @@ paths:
             type: array
             items:
               $ref: "#/definitions/Event"
-  /event:
+  /event/{uuid}:
     get:
       tags:
         - question
@@ -39,7 +39,7 @@ paths:
       parameters: 
         - 
           name: uuid
-          in: "query"
+          in: path
           description: "Unique identifier of Event"
           required: true
           type: "string"
@@ -56,6 +56,12 @@ paths:
         - "application/json"
       parameters: 
         - 
+          name: uuid
+          in: path
+          description: "Event to add to the database"
+          required: true
+          type: string
+        - 
           name: "event"
           in: "body"
           description: "Event to add to the database"
@@ -67,6 +73,19 @@ paths:
           description: "event response"
           schema: 
             $ref: "#/definitions/Event"
+    delete:
+      tags:
+        - question
+      description: "Deletes a new event"
+      parameters: 
+        - name: uuid
+          in: path
+          description: "Event UUID for deletion from the database"
+          required: true
+          type: string
+      responses: 
+        "200":
+          description: "event response"
 definitions:
   BaseEntity:
     type: "object"

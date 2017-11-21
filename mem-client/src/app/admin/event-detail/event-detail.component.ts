@@ -26,7 +26,7 @@ export class EventDetailComponent implements OnInit {
     console.log("Loading...")
     const uuid = this.route.snapshot.paramMap.get('uuid');
     console.log("UUID=" + uuid);
-    this.questionService.eventGet(uuid)
+    this.questionService.eventUuidGet(uuid)
       .subscribe(event => {
         this.event = event;
         this.busy = false
@@ -34,9 +34,9 @@ export class EventDetailComponent implements OnInit {
   }
 
   save() {
-    console.log("Saving...");
+    console.log("Update existing event...");
     this.busy = true;
-    this.questionService.eventPost(this.event).subscribe(event => {
+    this.questionService.eventUuidPost(this.event.uuid, this.event).subscribe(event => {
       this.busy = false;
     }
     );

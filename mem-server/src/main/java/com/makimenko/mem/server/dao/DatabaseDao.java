@@ -20,6 +20,7 @@ import java.util.UUID;
 
 import javax.annotation.PostConstruct;
 
+import org.apache.catalina.authenticator.DigestAuthenticator.DigestInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -31,6 +32,7 @@ import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.makimenko.mem.server.api.EventApiController;
 import com.makimenko.mem.server.exception.MemException;
+import com.makimenko.mem.server.exception.MemNoDataFoundException;
 import com.makimenko.mem.server.model.Event;
 
 @Component
@@ -81,14 +83,32 @@ public class DatabaseDao {
 		}
 	}
 
-	public void insertEvent(Event event) {
-		log.debug("Insert event: " + event);
-		event.setUuid(UUID.randomUUID().toString());
-		events.add(event);
-	}
-
 	public List<Event> getEvents() {
 		log.debug("Get all events");
 		return events;
 	}
+
+	public void insertEvent(Event event) {
+		log.debug("Insert new event: " + event);
+		event.setUuid(UUID.randomUUID().toString());
+		events.add(event);
+	}
+
+	public void updateEvent(Event event) {
+		log.debug("Update existing event: " + event);
+		Event existingEvent = findEvent(event.getUuid());
+		events.remove(existingEvent);
+		events.add(event);
+	}
+
+    public Event findEvent(String uuid) {
+    	Event event = events.stream().filter(i -> i.getUuid().equals(uuid)).findFirst().get();
+    	if (event==null) {
+    		String msg = "Event wuth UUID ["+uuid+"] was not found!";
+    		log.warn(msg);
+    		throw new MemNoDataFoundException(msg);
+    	}
+    	return event;
+    }
+    
 }

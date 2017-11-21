@@ -1,6 +1,6 @@
-<div fxLayout="row wrap" fxLayoutGap="10px">
+<div fxLayout="row" fxLayoutWrap fxLayoutAlign="start stretch">
 
-  <mat-card fxFlex *ngFor="let event of events">
+  <mat-card fxFlex="300px" *ngFor="let event of events">
     <mat-card-header>
       <mat-card-title>{{event.name}}</mat-card-title>
       <mat-card-subtitle>Dog Breed</mat-card-subtitle>
@@ -14,7 +14,7 @@
     </mat-card-content>
     <mat-card-actions>
       <button mat-button routerLink="/event-detail/{{event.uuid}}">EDIT</button>
-      <button mat-button>DELETE</button>
+      <button mat-button (click)="delete(event)">DELETE</button>
     </mat-card-actions>
   </mat-card>
 
