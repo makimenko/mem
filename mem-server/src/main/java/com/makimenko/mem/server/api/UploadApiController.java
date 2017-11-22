@@ -59,18 +59,18 @@ public class UploadApiController implements UploadApi {
 	public ResponseEntity<UploadLocation> uploadPost(
 			@ApiParam(value = "file detail") @Valid @RequestPart("file") MultipartFile file) {
 
-		String name = file.getOriginalFilename();
-		log.info("Uploading file: {}", name);
-		if (!file.isEmpty() || Strings.isNullOrEmpty(name)) {
+		log.info("Uploading file: {}", file.getOriginalFilename());
+		if (!file.isEmpty()) {
 
 			try {
 				// Creating the directory to store file
-				File dir = new File(uploadDir);
+				File dir = new File(uploadDir+File.separator+file.getContentType());
 				if (!dir.exists()) {
 					dir.mkdirs();
 				}
 
 				// Create the file on server
+				String name = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
 				File serverFile = new File(dir.getAbsolutePath() + File.separator + name);
 				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
 				byte[] bytes = file.getBytes();
@@ -81,7 +81,7 @@ public class UploadApiController implements UploadApi {
 
 				UploadLocation location = new UploadLocation();
 				// TODO: fixme
-				location.setUrl(uploadUrl + name);
+				location.setUrl(uploadUrl +file.getContentType()+"/"+ name);
 				return new ResponseEntity<UploadLocation>(location, HttpStatus.OK);
 			} catch (Exception e) {
 				log.warn("Failed to updaload file", e);

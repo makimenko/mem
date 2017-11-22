@@ -121,6 +121,12 @@ definitions:
       - $ref: '#/definitions/BaseEntity'
       - type: object
       - properties:
+          subTitle:
+            type: string
+          thumbnail:
+            $ref: "#/definitions/UploadLocation"
+          description:
+            type: string
           groups:
             type: array
             items: 

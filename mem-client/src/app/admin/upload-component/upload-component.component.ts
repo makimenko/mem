@@ -12,12 +12,13 @@ import { UploadListener } from "./upload-listener";
 export class UploadComponentComponent implements OnInit {
 
   @Input() accept: string;
-  @Input() multiple: boolean = true;
+  @Input() multiple: boolean;
   @Input() uploadListener: UploadListener;
 
   constructor(private uploadService: UploadService) { }
 
   ngOnInit() {
+    console.log("multiple="+this.multiple);
   }
 
   onFileChange(event) {
@@ -26,15 +27,19 @@ export class UploadComponentComponent implements OnInit {
       console.log("Submitting " + fileList.length + " files...");
       for (let i = 0; i < fileList.length; i++) {
         let file: File = fileList.item(i);
-        console.log("Uploading file: " + file.name);
-        this.uploadService.uploadPost(file).subscribe(i => {
-          console.log("Upload completed! File url: " + i.url);
-          if (this.uploadListener != undefined) {
-            this.uploadListener.onUploadComplete(i);
-          } else {
-            console.log("No upload listeners")
-          }
-        });
+        if (this.uploadListener.isUploadSupported(file)) {          
+          console.log("Uploading file: " + file.name + " / " + file.type);
+          this.uploadService.uploadPost(file).subscribe(i => {
+            console.log("Upload completed! File url: " + i.url);
+            if (this.uploadListener != undefined) {
+              this.uploadListener.onUploadComplete(i);
+            } else {
+              console.log("No upload listeners")
+            }
+          });
+        } else {
+          console.log("File type is invalid or unsuported!");
+        }
       }
     } else {
       console.log("No file");

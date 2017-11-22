@@ -1,22 +1,47 @@
-<mat-progress-bar *ngIf="busy" mode="indeterminate"></mat-progress-bar>
+<mat-progress-bar mode="{{(busy?'indeterminate':'determinate')}}"></mat-progress-bar>
 
 <div *ngIf="event" class="container">
-
-  <mat-dialog-actions>
+  <div fxLayout="row" fxLayoutAlign="start">
     <button mat-button (click)="save()">
       <mat-icon>save</mat-icon> Save
     </button>
-  </mat-dialog-actions>
-  <hr>
-  <mat-dialog-content>
-    <mat-form-field>
-      <input matInput [(ngModel)]="event.name">
-    </mat-form-field>
-    <br>
-    <img height="300px" src="{{imgUrl}}" /><br>
-    <app-upload-component accept=".jpg,.png,.jpeg,.gif" [uploadListener]="this"></app-upload-component>
-  </mat-dialog-content>
+  </div>
 
+  <mat-vertical-stepper>
+    <mat-step label="Event Summary">
+      <div fxLayout="column">
+        <div fxLayout="row">
+          <mat-form-field>
+            <input matInput [(ngModel)]="event.name" placeholder="Event Name">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput [(ngModel)]="event.subTitle" placeholder="Sub-Title">
+          </mat-form-field>
+        </div>
+        <mat-form-field>
+          <textarea matInput [(ngModel)]="event.description" placeholder="Description"></textarea>
+        </mat-form-field>
+        <div fxLayout="column">
+          <img style="max-width: 400px; height: auto; " src="{{event.thumbnail | serverFile }}" />
+          <app-upload-component accept="image/jpeg,image/png,image/gif" multiple="false" [uploadListener]="this"></app-upload-component>
+        </div>
+      </div>
+    </mat-step>
+    <mat-step label="Question Groups">
 
+      <mat-accordion>
+        <mat-expansion-panel *ngFor="let group of event.groups">
+          <mat-expansion-panel-header>
+            {{group.name}}
+          </mat-expansion-panel-header>
+          <mat-form-field>
+            <input matInput [(ngModel)]="group.name" placeholder="Group Name">
+          </mat-form-field>
+        </mat-expansion-panel>
+      </mat-accordion>
+      <button mat-button (click)="newGroup()">New</button>
+      
+    </mat-step>
+  </mat-vertical-stepper>
 
 </div>

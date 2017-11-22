@@ -7,6 +7,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { EventDetailComponent } from './event-detail/event-detail.component';
 import { FormsModule } from '@angular/forms';
 import { UploadComponentComponent } from './upload-component/upload-component.component';
+import { PipesModule } from '../pipes/pipes.module';
 
 const appRoutes: Routes = [
   { path: 'events', component: EventsComponent },
@@ -19,6 +20,7 @@ const appRoutes: Routes = [
     FormsModule,
     MaterialDesignModule,
     FlexLayoutModule,
+    PipesModule,
     RouterModule.forRoot(
       appRoutes
     )

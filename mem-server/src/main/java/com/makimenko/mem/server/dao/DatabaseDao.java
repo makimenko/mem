@@ -97,8 +97,8 @@ public class DatabaseDao {
 	public void updateEvent(Event event) {
 		log.debug("Update existing event: " + event);
 		Event existingEvent = findEvent(event.getUuid());
-		events.remove(existingEvent);
-		events.add(event);
+		int index = events.indexOf(existingEvent);
+		events.set(index, event);
 	}
 
     public Event findEvent(String uuid) {

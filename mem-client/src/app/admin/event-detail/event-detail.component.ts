@@ -14,11 +14,8 @@ export class EventDetailComponent implements OnInit, UploadListener {
 
   busy: boolean;
 
-  imgUrl: string;
-
   constructor(private route: ActivatedRoute,
-    private questionService: API.QuestionService,
-    @Optional() @Inject(API.BASE_PATH) private basePath: string
+    private questionService: API.QuestionService
   ) { }
 
   ngOnInit() {
@@ -57,7 +54,19 @@ export class EventDetailComponent implements OnInit, UploadListener {
 
   onUploadComplete(uploadLocation: API.UploadLocation): void {
     console.log("Image uploaded into: " + uploadLocation.url);
-    this.imgUrl = this.basePath + uploadLocation.url;
+    this.event.thumbnail = uploadLocation;
+  }
+
+  isUploadSupported(file: File): boolean {
+    return file.type.startsWith("image");
+  }
+
+  newGroup() {
+    if (this.event.groups == undefined ) {
+      this.event.groups = [];
+    }
+    let newGroup:API.Group = {};
+    this.event.groups.push(newGroup);
   }
 
 }
