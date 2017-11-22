@@ -2,13 +2,13 @@
 
 <div *ngIf="event" class="container">
   <div fxLayout="row" fxLayoutAlign="start">
-    <button mat-button (click)="save()">
+    <button mat-raised-button (click)="save()" color="primary">
       <mat-icon>save</mat-icon> Save
     </button>
   </div>
 
   <mat-vertical-stepper>
-    <mat-step label="Event Summary">
+    <mat-step label="Event Summary{{(event.name==undefined?'':': '+event.name)}}">
       <div fxLayout="column">
         <div fxLayout="row">
           <mat-form-field>
@@ -37,10 +37,14 @@
           <mat-form-field>
             <input matInput [(ngModel)]="group.name" placeholder="Group Name">
           </mat-form-field>
+          <mat-action-row>
+              <button mat-raised-button (click)="deleteGroup(group)" color="accent"><mat-icon>delete</mat-icon> Delete</button>
+            </mat-action-row>
         </mat-expansion-panel>
       </mat-accordion>
-      <button mat-button (click)="newGroup()">New</button>
-      
+      <br>
+      <button mat-raised-button (click)="newGroup()" color="primary">New</button>
+
     </mat-step>
   </mat-vertical-stepper>
 

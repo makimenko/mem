@@ -62,11 +62,23 @@ export class EventDetailComponent implements OnInit, UploadListener {
   }
 
   newGroup() {
-    if (this.event.groups == undefined ) {
+    if (this.event.groups == undefined) {
       this.event.groups = [];
     }
-    let newGroup:API.Group = {};
+    let newGroup: API.Group = {uuid:this.newUuid()};
     this.event.groups.push(newGroup);
   }
+
+  deleteGroup(group: API.Group) {
+    let index = this.event.groups.indexOf(group);
+    this.event.groups.splice(index, 1);
+  }
+
+  newUuid() : string{
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+        return v.toString(16);
+    });
+}
 
 }
