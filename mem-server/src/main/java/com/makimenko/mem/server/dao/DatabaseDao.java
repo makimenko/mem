@@ -84,7 +84,7 @@ public class DatabaseDao {
 	}
 
 	public List<Event> getEvents() {
-		log.debug("Get all events");
+		log.debug("DAO: Get all events");
 		return events;
 	}
 

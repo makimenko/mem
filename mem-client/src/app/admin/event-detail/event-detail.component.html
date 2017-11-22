@@ -1,20 +1,22 @@
 <mat-progress-bar *ngIf="busy" mode="indeterminate"></mat-progress-bar>
 
-<div *ngIf="event" class="container">   
-
-  <mat-dialog-content>
-    <mat-form-field>
-      <input matInput [(ngModel)]="event.name">
-    </mat-form-field>
-  </mat-dialog-content>
+<div *ngIf="event" class="container">
 
   <mat-dialog-actions>
     <button mat-button (click)="save()">
       <mat-icon>save</mat-icon> Save
     </button>
   </mat-dialog-actions>
- 
-  <app-image-upload-component></app-image-upload-component>
-  
+  <hr>
+  <mat-dialog-content>
+    <mat-form-field>
+      <input matInput [(ngModel)]="event.name">
+    </mat-form-field>
+    <br>
+    <img height="300px" src="{{imgUrl}}" /><br>
+    <app-upload-component accept=".jpg,.png,.jpeg,.gif" [uploadListener]="this"></app-upload-component>
+  </mat-dialog-content>
+
+
 
 </div>

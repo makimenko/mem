@@ -81,7 +81,7 @@ paths:
           description: "event response"
           schema: 
             $ref: "#/definitions/Event"
-  /upload/image:
+  /upload:
     post:
       tags:
         - upload
@@ -93,14 +93,14 @@ paths:
       parameters:
       - name: file
         in: formData
-        description: The image data
+        description: File content
         required: true
         type: file
         minLength: 1
         maxLength: 5000000  # ~5MB
       responses:
         default:
-          description: Returns the photo location on server
+          description: Returns file location on server
           schema:
             $ref: "#/definitions/UploadLocation"
 definitions:

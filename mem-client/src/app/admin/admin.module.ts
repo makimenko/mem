@@ -5,8 +5,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { MaterialDesignModule } from '../material-design/material-design.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { EventDetailComponent } from './event-detail/event-detail.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ImageUploadComponentComponent } from './image-upload-component/image-upload-component.component';
+import { FormsModule } from '@angular/forms';
+import { UploadComponentComponent } from './upload-component/upload-component.component';
 
 const appRoutes: Routes = [
   { path: 'events', component: EventsComponent },
@@ -17,7 +17,6 @@ const appRoutes: Routes = [
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule,
     MaterialDesignModule,
     FlexLayoutModule,
     RouterModule.forRoot(
@@ -27,7 +26,7 @@ const appRoutes: Routes = [
   declarations: [
     EventsComponent,
     EventDetailComponent,
-    ImageUploadComponentComponent
+    UploadComponentComponent
   ],
   exports: [
     RouterModule

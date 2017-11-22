@@ -1,20 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Optional, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as API from '../../api-generated';
+import { UploadListener } from "../upload-component/upload-listener";
 
 @Component({
   selector: 'app-event-detail',
   templateUrl: './event-detail.component.html',
   styleUrls: ['./event-detail.component.scss']
 })
-export class EventDetailComponent implements OnInit {
+export class EventDetailComponent implements OnInit, UploadListener {
 
   event: API.Event;
 
   busy: boolean;
 
+  imgUrl: string;
+
   constructor(private route: ActivatedRoute,
-    private questionService: API.QuestionService
+    private questionService: API.QuestionService,
+    @Optional() @Inject(API.BASE_PATH) private basePath: string
   ) { }
 
   ngOnInit() {
@@ -22,7 +26,6 @@ export class EventDetailComponent implements OnInit {
   }
 
   loadEvent(): void {
-
     console.log("Loading...")
     const uuid = this.route.snapshot.paramMap.get('uuid');
     console.log("UUID=" + uuid);
@@ -50,6 +53,11 @@ export class EventDetailComponent implements OnInit {
       this.event = event;
       console.log("Event stored: " + this.event.uuid);
     });
+  }
+
+  onUploadComplete(uploadLocation: API.UploadLocation): void {
+    console.log("Image uploaded into: " + uploadLocation.url);
+    this.imgUrl = this.basePath + uploadLocation.url;
   }
 
 }

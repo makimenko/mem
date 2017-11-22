@@ -44,8 +44,11 @@ public class UploadApiController implements UploadApi {
 
 	private final HttpServletRequest request;
 
-	@Value("${images.dir:public/images}")
-	private String imagesDir;
+	@Value("${upload.dir:public/upload}")
+	private String uploadDir;
+
+	@Value("${upload.url:/upload/}")
+	private String uploadUrl;
 
 	@org.springframework.beans.factory.annotation.Autowired
 	public UploadApiController(ObjectMapper objectMapper, HttpServletRequest request) {
@@ -53,16 +56,16 @@ public class UploadApiController implements UploadApi {
 		this.request = request;
 	}
 
-	public ResponseEntity<UploadLocation> uploadImagePost(
+	public ResponseEntity<UploadLocation> uploadPost(
 			@ApiParam(value = "file detail") @Valid @RequestPart("file") MultipartFile file) {
 
 		String name = file.getOriginalFilename();
 		log.info("Uploading file: {}", name);
 		if (!file.isEmpty() || Strings.isNullOrEmpty(name)) {
-			try {
 
+			try {
 				// Creating the directory to store file
-				File dir = new File(imagesDir);
+				File dir = new File(uploadDir);
 				if (!dir.exists()) {
 					dir.mkdirs();
 				}
@@ -78,7 +81,7 @@ public class UploadApiController implements UploadApi {
 
 				UploadLocation location = new UploadLocation();
 				// TODO: fixme
-				location.setUrl("/images/" + name);
+				location.setUrl(uploadUrl + name);
 				return new ResponseEntity<UploadLocation>(location, HttpStatus.OK);
 			} catch (Exception e) {
 				log.warn("Failed to updaload file", e);
@@ -88,6 +91,7 @@ public class UploadApiController implements UploadApi {
 			log.warn("File name and/or content are empty");
 			return new ResponseEntity<UploadLocation>(HttpStatus.NO_CONTENT);
 		}
+
 	}
 
 }
