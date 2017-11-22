@@ -54,12 +54,11 @@ public class UploadApiController implements UploadApi {
 	}
 
 	public ResponseEntity<UploadLocation> uploadImagePost(
-			@ApiParam(value = "The file name", required = true) @RequestPart(value = "name", required = true) String name,
-			@ApiParam(value = "file detail") @Valid @RequestPart("file") MultipartFile image) {
+			@ApiParam(value = "file detail") @Valid @RequestPart("file") MultipartFile file) {
 
+		String name = file.getOriginalFilename();
 		log.info("Uploading file: {}", name);
-		
-		if (!image.isEmpty() || Strings.isNullOrEmpty(name)) {
+		if (!file.isEmpty() || Strings.isNullOrEmpty(name)) {
 			try {
 
 				// Creating the directory to store file
@@ -71,7 +70,7 @@ public class UploadApiController implements UploadApi {
 				// Create the file on server
 				File serverFile = new File(dir.getAbsolutePath() + File.separator + name);
 				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
-				byte[] bytes = image.getBytes();
+				byte[] bytes = file.getBytes();
 				stream.write(bytes);
 				stream.close();
 
@@ -89,7 +88,6 @@ public class UploadApiController implements UploadApi {
 			log.warn("File name and/or content are empty");
 			return new ResponseEntity<UploadLocation>(HttpStatus.NO_CONTENT);
 		}
-
 	}
 
 }

@@ -91,12 +91,7 @@ paths:
       produces: 
         - "application/json"
       parameters:
-      - name: name
-        in: formData
-        description: The file name
-        required: true
-        type: string
-      - name: image
+      - name: file
         in: formData
         description: The image data
         required: true

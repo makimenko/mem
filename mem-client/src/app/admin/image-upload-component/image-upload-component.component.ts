@@ -38,32 +38,11 @@ export class ImageUploadComponentComponent implements OnInit {
     }
   }
 
-  private prepareSave(): any {
-    let input = new FormData();
-    // This can be done a lot prettier; for example automatically assigning values by looping through `this.form.controls`, but we'll keep it as simple as possible here
-    input.append('name', this.form.get('name').value);
-    input.append('image', this.form.get('image').value);
-    return input;
-  }
-
   onSubmit() {
     console.log("Submitting file...");
-    // const formModel = this.prepareSave();
-
     this.loading = true;
-    let name = this.form.get('name').value;
-    let image: File = this.form.get('image').value;
-
-    console.log("name=" + name);
-    console.log("Start image ---");
-    console.log(image)
-    console.log("--- end image.");
-    //let imageBlob : Blob = image.slice();
-    let imageBlob:Blob = new Blob(['aaa'], {type: 'image/png'})
-    console.log(imageBlob);
-    
-    
-    this.uploadService.uploadImagePost(name, imageBlob).subscribe(i => {
+    let image = this.form.get('image').value;    
+    this.uploadService.uploadImagePost(image).subscribe(i => {
       this.loading = false;
       console.log("Upload completed! Image url: " + i.url);
     });
