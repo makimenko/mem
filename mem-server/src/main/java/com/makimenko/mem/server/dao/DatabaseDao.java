@@ -1,26 +1,17 @@
 package com.makimenko.mem.server.dao;
 
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import java.lang.reflect.Type;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 import javax.annotation.PostConstruct;
 
-import org.apache.catalina.authenticator.DigestAuthenticator.DigestInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -30,7 +21,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
-import com.makimenko.mem.server.api.EventApiController;
 import com.makimenko.mem.server.exception.MemException;
 import com.makimenko.mem.server.exception.MemNoDataFoundException;
 import com.makimenko.mem.server.model.Event;
@@ -101,14 +91,14 @@ public class DatabaseDao {
 		events.set(index, event);
 	}
 
-    public Event findEvent(String uuid) {
-    	Event event = events.stream().filter(i -> i.getUuid().equals(uuid)).findFirst().get();
-    	if (event==null) {
-    		String msg = "Event wuth UUID ["+uuid+"] was not found!";
-    		log.warn(msg);
-    		throw new MemNoDataFoundException(msg);
-    	}
-    	return event;
-    }
-    
+	public Event findEvent(String uuid) {
+		Event event = events.stream().filter(i -> i.getUuid().equals(uuid)).findFirst().get();
+		if (event == null) {
+			String msg = "Event wuth UUID [" + uuid + "] was not found!";
+			log.warn(msg);
+			throw new MemNoDataFoundException(msg);
+		}
+		return event;
+	}
+
 }

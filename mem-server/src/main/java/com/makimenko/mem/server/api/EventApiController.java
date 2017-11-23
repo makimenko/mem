@@ -1,13 +1,8 @@
 package com.makimenko.mem.server.api;
 
-import com.makimenko.mem.server.dao.DatabaseDao;
-import com.makimenko.mem.server.exception.MemException;
-import com.makimenko.mem.server.exception.MemNoDataFoundException;
-import com.makimenko.mem.server.model.Event;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.base.Strings;
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
-import io.swagger.annotations.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,17 +12,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.multipart.MultipartFile;
 
-import javax.validation.constraints.*;
-import javax.validation.Valid;
-import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
-import java.util.List;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.base.Strings;
+import com.makimenko.mem.server.dao.DatabaseDao;
+import com.makimenko.mem.server.exception.MemNoDataFoundException;
+import com.makimenko.mem.server.model.Event;
+
+import io.swagger.annotations.ApiParam;
 
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2017-11-17T15:15:20.914+02:00")
 
