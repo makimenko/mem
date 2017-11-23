@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import * as API from '../../api-generated';
+import { UUID } from "../../utils";
 
 @Component({
   selector: 'app-question-groups',
@@ -8,7 +9,7 @@ import * as API from '../../api-generated';
 })
 export class QuestionGroupsComponent implements OnInit {
 
-  @Input() groups: API.Group[];
+  @Input() event: API.Event;
 
   constructor() { }
 
@@ -16,23 +17,20 @@ export class QuestionGroupsComponent implements OnInit {
   }
 
   newGroup() {
-    if (this.groups == undefined) {
-      this.groups = [];
+    if (this.event.groups == undefined) {
+      this.event.groups = [];
     }
-    let newGroup: API.Group = { uuid: this.newUuid() };
-    this.groups.push(newGroup);
+    let group = {} as API.Group;
+    group.uuid = UUID.randomUUID();
+    this.event.groups.push(group);
   }
 
   deleteGroup(group: API.Group) {
-    let index = this.groups.indexOf(group);
-    this.groups.splice(index, 1);
-  }
-
-  newUuid(): string {
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-      var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-      return v.toString(16);
-    });
+    let index = this.event.groups.indexOf(group);
+    if (index < 0) {
+      throw Error("Group could not be deleted, because it was not found!");
+    }
+    this.event.groups.splice(index, 1);
   }
 
 }

@@ -1,10 +1,13 @@
 <mat-progress-bar mode="{{(busy?'indeterminate':'determinate')}}"></mat-progress-bar>
 
 <div *ngIf="event" class="container">
-  
+
   <div fxLayout="row" fxLayoutAlign="start">
     <button mat-raised-button (click)="saveEvent()" color="primary">
       <mat-icon>save</mat-icon> Save
+    </button>
+    <button mat-raised-button (click)="debugEvent()" color="primary">
+      <mat-icon>debug</mat-icon> Debug Event Data
     </button>
   </div>
 
@@ -14,7 +17,7 @@
     </mat-step>
 
     <mat-step label="List of Questions">
-      <app-question-groups [groups]="event.groups"></app-question-groups>
+      <app-question-groups [event]="event"></app-question-groups>
     </mat-step>
   </mat-vertical-stepper>
 

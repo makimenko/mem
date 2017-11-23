@@ -43,12 +43,18 @@ export class EventDetailComponent implements OnInit {
 
   saveEvent() {
     console.log("Save event");
+    console.log(this.event);
     this.busy = true;
     this.questionService.eventPost(this.event).subscribe(event => {
       this.busy = false;
       this.event = event;
       console.log("Event stored: " + this.event.uuid);
     });
+  }
+
+  debugEvent() {
+    console.log(JSON.stringify(this.event.groups[0]));
+    
   }
 
 
