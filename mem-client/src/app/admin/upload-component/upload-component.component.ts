@@ -1,8 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { UploadService } from '../../api-generated';
 import { UploadListener } from "./upload-listener";
-
+import * as API from '../../api-generated';
 
 @Component({
   selector: 'app-upload-component',
@@ -15,10 +14,10 @@ export class UploadComponentComponent implements OnInit {
   @Input() multiple: boolean;
   @Input() uploadListener: UploadListener;
 
-  constructor(private uploadService: UploadService) { }
+  constructor(private uploadService: API.UploadService) { }
 
   ngOnInit() {
-    console.log("multiple="+this.multiple);
+    
   }
 
   onFileChange(event) {

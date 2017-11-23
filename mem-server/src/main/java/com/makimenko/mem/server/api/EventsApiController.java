@@ -1,5 +1,6 @@
 package com.makimenko.mem.server.api;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -37,9 +38,19 @@ public class EventsApiController implements EventsApi {
 		this.request = request;
 	}
 
-	public ResponseEntity<List<Event>> eventsGet() {
-		log.info("Returning all events");
-		return new ResponseEntity<List<Event>>(databaseDao.getEvents(), HttpStatus.OK);
+	public ResponseEntity<List<Event>> eventsFindGet() {
+		log.info("Returning events with summary/basic information");
+		List<Event> shortList = new ArrayList<>();
+		databaseDao.getEvents().forEach(i -> {
+			Event shortEvent = new Event();
+			shortEvent.setUuid(i.getUuid());
+			shortEvent.setName(i.getName());
+			shortEvent.setSubTitle(i.getSubTitle());
+			shortEvent.setThumbnail(i.getThumbnail());
+			shortList.add(shortEvent);
+		});
+		log.trace("Total number of events = {}", shortList.size());
+		return new ResponseEntity<List<Event>>(shortList, HttpStatus.OK);
 	}
 
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { QuestionService, Event } from '../../api-generated/index';
+import * as API from '../../api-generated';
 
 @Component({
   selector: 'app-events',
@@ -8,25 +8,26 @@ import { QuestionService, Event } from '../../api-generated/index';
 })
 export class EventsComponent implements OnInit {
 
-  events: Event[];
+  events: API.Event[];
 
-  constructor(public questionService: QuestionService) { }
+  constructor(public questionService: API.QuestionService) { }
 
   ngOnInit() {
-    this.loadEvents();
+    this.queryEvents();
   }
 
-  loadEvents() {
-    this.questionService.eventsGet().subscribe(i => this.events = i);
+  queryEvents() {
+    console.log("Finding available events")
+    this.questionService.eventsFindGet().subscribe(i => this.events = i);
   }
 
-  delete(event:Event )  {
-    console.log("Deleting event: "+event.uuid);
+  delete(event: API.Event) {
+    console.log("Deleting event: " + event.uuid);
     this.questionService.eventUuidDelete(event.uuid).subscribe(i => {
       console.log("Deleted, reloading events...");
-      this.loadEvents();
+      this.queryEvents();
     }
     );
   }
-  
+
 }

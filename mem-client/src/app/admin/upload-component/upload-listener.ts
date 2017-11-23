@@ -1,9 +1,9 @@
-import { UploadLocation } from "../../api-generated/index";
+import * as API from '../../api-generated';
 
 export interface UploadListener {
 
-    isUploadSupported(file:File):boolean;
+    isUploadSupported(file: File): boolean;
 
-    onUploadComplete(uploadLocation:UploadLocation):void;
-
+    onUploadComplete(uploadLocation: API.UploadLocation): void;
+    
 }

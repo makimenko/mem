@@ -8,7 +8,7 @@ import { UploadListener } from "../upload-component/upload-listener";
   templateUrl: './event-detail.component.html',
   styleUrls: ['./event-detail.component.scss']
 })
-export class EventDetailComponent implements OnInit, UploadListener {
+export class EventDetailComponent implements OnInit {
 
   event: API.Event;
 
@@ -39,10 +39,9 @@ export class EventDetailComponent implements OnInit, UploadListener {
           this.busy = false
         });
     }
-
   }
 
-  save() {
+  saveEvent() {
     console.log("Save event");
     this.busy = true;
     this.questionService.eventPost(this.event).subscribe(event => {
@@ -52,33 +51,5 @@ export class EventDetailComponent implements OnInit, UploadListener {
     });
   }
 
-  onUploadComplete(uploadLocation: API.UploadLocation): void {
-    console.log("Image uploaded into: " + uploadLocation.url);
-    this.event.thumbnail = uploadLocation;
-  }
-
-  isUploadSupported(file: File): boolean {
-    return file.type.startsWith("image");
-  }
-
-  newGroup() {
-    if (this.event.groups == undefined) {
-      this.event.groups = [];
-    }
-    let newGroup: API.Group = {uuid:this.newUuid()};
-    this.event.groups.push(newGroup);
-  }
-
-  deleteGroup(group: API.Group) {
-    let index = this.event.groups.indexOf(group);
-    this.event.groups.splice(index, 1);
-  }
-
-  newUuid() : string{
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-        var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
-        return v.toString(16);
-    });
-}
 
 }

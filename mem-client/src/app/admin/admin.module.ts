@@ -8,6 +8,8 @@ import { EventDetailComponent } from './event-detail/event-detail.component';
 import { FormsModule } from '@angular/forms';
 import { UploadComponentComponent } from './upload-component/upload-component.component';
 import { PipesModule } from '../pipes/pipes.module';
+import { QuestionGroupsComponent } from './question-groups/question-groups.component';
+import { EventSummaryComponent } from './event-summary/event-summary.component';
 
 const appRoutes: Routes = [
   { path: 'events', component: EventsComponent },
@@ -28,7 +30,9 @@ const appRoutes: Routes = [
   declarations: [
     EventsComponent,
     EventDetailComponent,
-    UploadComponentComponent
+    UploadComponentComponent,
+    QuestionGroupsComponent,
+    EventSummaryComponent
   ],
   exports: [
     RouterModule

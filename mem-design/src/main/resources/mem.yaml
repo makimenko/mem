@@ -13,12 +13,12 @@ tags:
 schemes:
 - "http"
 paths:
-  /events:
+  /events/find:
     get:
       tags:
         - question
-      summary: Finds all questions
-      description: "Finds all questions"
+      summary: Finds events and return base information
+      description: "Finds events and return base information"
       produces:
         - application/json
       responses:

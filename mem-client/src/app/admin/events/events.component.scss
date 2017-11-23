@@ -4,6 +4,10 @@
     min-height:450px;
 }
 
+.mat-card-title {
+    font-size: 20px;
+}
+
 .thumbnail {
     height: auto; 
     width: auto; 
@@ -15,15 +19,4 @@
 .mat-card-content > p {
     max-height:109px;
     overflow: hidden;
-}
-
-.mat-icon.newIcon {
-    font-size:100px;
-    color:lightgray;
-    margin-left: 60px;
-    margin-top: 60px;
-}
-
-.mat-card-title {
-    font-size: 20px;
 }
