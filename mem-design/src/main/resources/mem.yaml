@@ -158,5 +158,5 @@ definitions:
     allOf:
       - $ref: '#/definitions/BaseEntity'
       - properties:
-          exepcted:
+          expected:
             type: boolean

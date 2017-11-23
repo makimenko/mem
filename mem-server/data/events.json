@@ -10,19 +10,105 @@
     "groups": [
       {
         "uuid": "2809a09e-e81d-4454-9701-77727c1f33a5",
-        "name": "Basic Concepts and Terminology"
+        "name": "Basic Concepts and Terminology",
+        "questions": [
+          {
+            "uuid": "09c55ed6-d3e6-4013-9d70-4eab6c2089c1",
+            "name": "Distinct IT environment that is designed for the purpose of remotely provisioning scalable and measured IT resources",
+            "answers": [
+              {
+                "uuid": "4bf58d68-5bbf-4dff-87ed-c734ab60b93b",
+                "name": "Cloud",
+                "expected": true
+              },
+              {
+                "uuid": "7da3bc68-b8da-4d71-9ccc-3ad8f2725369",
+                "name": "Data Center"
+              },
+              {
+                "uuid": "49320ec9-7776-4523-892b-1df0f4534b0b",
+                "name": "Scalable Environment"
+              },
+              {
+                "uuid": "497a42f1-c9e2-4ef1-a3f4-b99f53a6f456",
+                "name": "On-Premise Environment"
+              }
+            ]
+          },
+          {
+            "uuid": "593c264b-78a3-428d-aa71-bb1bc9a752f6",
+            "name": "Physical or virtual IT-related artifact that can be either software based, such as a virtual server or a custom software program, or hardware-based, such as a physical server or a network device",
+            "answers": [
+              {
+                "uuid": "6fb04727-7e03-4dbe-a72b-720beb67572b",
+                "name": "IT Resource",
+                "expected": true
+              },
+              {
+                "uuid": "6a3444bb-703f-47a0-9b5f-a51028f81fb5",
+                "name": "Connectivity"
+              },
+              {
+                "uuid": "17845c1c-4f3f-4112-b3c4-bc15a4c4c6e1",
+                "name": "Cloud"
+              }
+            ]
+          }
+        ]
       },
       {
-        "uuid": "d21cd8c0-c819-41ce-88db-d373965fba30",
-        "name": "adsasdasdasdasd"
-      },
-      {
-        "uuid": "12ff40f5-d9e5-4b54-856f-b017167dfdb6",
-        "name": "test group"
-      },
-      {
-        "uuid": "d5e6d3c3-0db2-45f8-8f00-445e69939b6e",
-        "name": "asdasd"
+        "uuid": "16df0ce7-1b26-482b-baaf-03a3120c5070",
+        "name": "Cloud Characteristics",
+        "questions": [
+          {
+            "uuid": "af11e617-7f4d-476f-9a59-90aac46e3253",
+            "name": "Cloud Characteristics (select all that apply)",
+            "answers": [
+              {
+                "uuid": "57b918b8-c4f8-4a7d-bc15-ca6f679302d2",
+                "name": "On-Demand Usage",
+                "expected": true
+              },
+              {
+                "uuid": "134fd1cc-a7fa-445c-9c0e-034eb296645a",
+                "name": "Ubiquitous Access",
+                "expected": true
+              },
+              {
+                "uuid": "00df3db3-f681-4291-b95d-dd7a88b78bc7",
+                "name": "Multi-tenancy (Resourcing Pooling)",
+                "expected": true
+              },
+              {
+                "uuid": "a6ddcd97-a66a-4e5b-8e3c-cdec7e34d90a",
+                "name": "Elasticity (and Scalability)",
+                "expected": true
+              },
+              {
+                "uuid": "1283fe9e-c6df-478a-8c15-524014e0a363",
+                "name": "Measured Usage",
+                "expected": true
+              },
+              {
+                "uuid": "2b87740f-43e5-4644-ae08-044735fd148d",
+                "name": "Resiliency",
+                "expected": true
+              },
+              {
+                "uuid": "5a95b8e4-9f7b-46a6-9354-d6f103cdc9e7",
+                "name": "Performance"
+              },
+              {
+                "uuid": "85f9e592-054d-4136-aab3-94943e12f99e",
+                "name": "High-End"
+              },
+              {
+                "uuid": "539d9d75-f91c-4fcf-932c-fc09046c011e",
+                "name": "Top-end"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -34,11 +120,6 @@
       "url": "/upload/image/png/cd20d9e9-7bd9-475a-bbf5-5e938293152c_question.png"
     },
     "description": "this event is just for simple testing ",
-    "groups": [
-      {
-        "uuid": "7dda69dd-598a-4826-9509-2d6b93fcbbc5",
-        "name": "sample"
-      }
-    ]
+    "groups": []
   }
 ]

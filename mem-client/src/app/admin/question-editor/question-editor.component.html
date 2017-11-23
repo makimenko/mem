@@ -2,4 +2,5 @@
   <mat-form-field fxFlex="auto">
     <input matInput [(ngModel)]="question.name" placeholder="Question">
   </mat-form-field>
+  <app-question-answers [question]="question"></app-question-answers>
 </div>

@@ -1,3 +1,11 @@
-<app-question-editor *ngFor="let question of group.questions" [question]="question"></app-question-editor>
-<br>
-<button mat-raised-button (click)="newQuestion()">New Question</button>
+<div *ngIf="group.questions">
+    <div *ngFor="let question of group.questions" class="question" fxLayout="row">
+        <app-question-editor fxFlex="calc(80%)" [question]="question"></app-question-editor>
+        <div fxFlex="calc(20%)">
+            <button mat-raised-button (click)="deleteQuestion(question)">
+                <mat-icon>delete</mat-icon> Delete Question</button>
+        </div>
+    </div>
+    <br>
+</div>
+<button mat-raised-button (click)="newQuestion()" color="accent">New Question</button>

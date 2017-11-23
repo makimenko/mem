@@ -47,14 +47,11 @@ export class EventDetailComponent implements OnInit {
     this.busy = true;
     this.questionService.eventPost(this.event).subscribe(event => {
       this.busy = false;
-      this.event = event;
+      if (this.event.uuid == undefined || this.event.uuid != event.uuid) {
+        this.event = event;
+      }
       console.log("Event stored: " + this.event.uuid);
     });
-  }
-
-  debugEvent() {
-    console.log(JSON.stringify(this.event.groups[0]));
-    
   }
 
 
