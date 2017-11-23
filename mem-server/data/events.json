@@ -1,52 +1,32 @@
 [
   {
-    "uuid": "6b4c0692-bc62-42b0-af33-a5e04e1fbb39",
-    "name": "Car Trip",
-    "subTitle": "2017",
+    "uuid": "ef828f56-7489-45ff-992a-b4f894f93d09",
+    "name": "Cloud Part 1",
+    "subTitle": "Fundamental Cloud Computing",
     "thumbnail": {
-      "url": "/upload/image/jpeg/d5cc6c18-0630-4d64-9952-ce94d85c69f4__2014-07-01 16-32-23_0183_Canon PowerShot SX10 IS.JPG"
+      "url": "/upload/image/jpeg/a1d53324-e574-46cb-b014-00a1f3f74c73_CCP_module01-214x300.jpg"
     },
-    "description": "ׁףןונ ןףעורוסעגטו :)",
+    "description": "Sample from www.arcitura.com. This foundational course provides end-to-end coverage of fundamental cloud computing topics as they pertain to both technology and business considerations. The course content is divided into a series of modular sections, each of which is accompanied by one or more hands-on exercises.",
     "groups": [
       {
-        "uuid": "a9f84753-f7f6-431e-854f-bebdd8a0a210",
-        "name": "Question 1"
-      },
-      {
-        "uuid": "e2e75ad6-d5c8-4244-8fd7-3c06e78653ed",
-        "name": "Question 2"
+        "uuid": "2809a09e-e81d-4454-9701-77727c1f33a5",
+        "name": "Basic Concepts and Terminology"
       }
     ]
   },
   {
-    "uuid": "3eb2b58a-9401-4985-8de3-401e45ebd629",
-    "name": "USA",
-    "subTitle": "2017",
+    "uuid": "ca7b097b-2846-42fb-9eea-a89f118b204c",
+    "name": "׀ׁ€׀¾ׁׁ‚׀¾׀¹ ׀¢׀µׁׁ‚",
+    "subTitle": "Charset Testing",
     "thumbnail": {
-      "url": "/upload/image/jpeg/6087fd56-9b8d-4726-ba5a-172df9e86c5f_2017-05-18 18-19-35_X70_0016.JPG"
+      "url": "/upload/image/png/cd20d9e9-7bd9-475a-bbf5-5e938293152c_question.png"
     },
-    "description": "ֿףעורוסעגטו פûגמנפûכמגנפכמûגנ פûגמנפûכמגנפכמûגנ פûגמנפûכמגנפכמûגנ פûגמנפûכמגנפכמûגנ פûגמנפûכמגנפכמûגנ",
+    "description": "this event is just for simple testing ",
     "groups": [
       {
-        "uuid": "749712b1-5e18-4e1a-82db-15d519c18ad0",
-        "name": "Q1"
+        "uuid": "7dda69dd-598a-4826-9509-2d6b93fcbbc5",
+        "name": "sample"
       }
     ]
-  },
-  {
-    "uuid": "e1b0ae1a-9e6b-4f3c-9d90-54bf50996ba6",
-    "name": "fdfsdfsdf2"
-  },
-  {
-    "uuid": "f537433d-65e6-44fd-8ee5-09e5de0006dd",
-    "name": "zzz",
-    "subTitle": "sadadasd"
-  },
-  {
-    "uuid": "48ecfb27-4718-44cb-bbfe-d12bb463760b",
-    "name": "asdasd",
-    "thumbnail": {
-      "url": "/upload/image/png/b106506a-3254-45c1-aa86-9ec360567f04_logo.png"
-    }
   }
 ]

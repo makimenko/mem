@@ -1,26 +1,26 @@
-<div fxLayout="row" fxLayoutWrap fxLayoutAlign="start stretch">
+<div fxLayout="row" fxLayoutWrap fxLayoutAlign="start" class="container">
 
-  <mat-card fxFlex="300px" *ngFor="let event of events">
+  <mat-card fxFlex="300px" *ngFor="let event of events" fxLayout="column" fxLayoutAlign="space-between">
     <mat-card-header>
       <mat-card-title>{{event.name}}</mat-card-title>
       <mat-card-subtitle>{{event.subTitle}}</mat-card-subtitle>
     </mat-card-header>
-    <img mat-card-image src="{{event.thumbnail | serverFile}}">
+    <div fxLayout="row" fxLayoutAlign="center">
+      <img src="{{event.thumbnail | serverFile}}" class="thumbnail">
+    </div>
     <mat-card-content>
       <p>{{event.description}}</p>
     </mat-card-content>
     <mat-card-actions>
-        <button mat-button routerLink="/event-detail/{{event.uuid}}">EDIT</button>        
-        <button mat-button (click)="delete(event)">DELETE</button>
-      </mat-card-actions>
+      <button mat-button routerLink="/event-detail/{{event.uuid}}">EDIT</button>
+      <button mat-button (click)="delete(event)">DELETE</button>
+    </mat-card-actions>
   </mat-card>
 
-  <a routerLink="/event-detail/new">
-    <mat-card fxFlex="300px">
-      <mat-card-content>
-        <mat-icon style="font-size:100px;color:lightgray;">create_new_folder</mat-icon>
-      </mat-card-content>
-    </mat-card>
-  </a>
+  <mat-card fxFlex="300px"  fxLayout="row" fxLayoutAlign="center center" style="background:#FEFEFE">
+    <button mat-raised-button routerLink="/event-detail/new" color="primary">
+       <mat-icon>create_new_folder</mat-icon> Create New Event
+    </button>
+  </mat-card>
 
 </div>
