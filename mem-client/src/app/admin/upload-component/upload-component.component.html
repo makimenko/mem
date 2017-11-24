@@ -1,1 +1,5 @@
-<input type="file" accept="{{accept}}" (change)="onFileChange($event)" (multiple)="multiple">
+<button mat-button (click)="fileInput.click()">
+  <mat-icon>add_a_photo</mat-icon>
+  <span>Select File</span>
+  <input #fileInput type="file" (change)="onFileChange($event)" style="display:none;" />
+</button>

@@ -1,7 +1,7 @@
 import { Component, OnInit, Optional, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as API from '../../api-generated';
-import { UploadListener } from "../upload-component/upload-listener";
+import { UploadListener } from "../../utils";
 
 @Component({
   selector: 'app-event-detail',

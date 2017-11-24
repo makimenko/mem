@@ -1,0 +1,15 @@
+<div fxLayout="row" fxLayoutWrap fxLayoutAlign="start">
+    <mat-card fxFlex="300px" *ngFor="let visualContent of group.visualContents" fxLayout="column" fxLayoutAlign="space-between">
+        <div fxLayout="row" fxLayoutAlign="center">
+            <img src="{{visualContent.media | serverFile }}" class="visualContentImage" />
+        </div>
+        <mat-card-actions>
+            <button mat-button (click)="deleteVisualContent(visualContent)">DELETE</button>
+        </mat-card-actions>
+    </mat-card>
+
+    <mat-card fxFlex="300px" fxLayout="column" fxLayoutAlign="space-between" class="new">
+        <app-upload-component accept="image/jpeg,image/png,image/gif" [multiple]="true" [uploadListener]="this"></app-upload-component>
+    </mat-card>
+
+</div>

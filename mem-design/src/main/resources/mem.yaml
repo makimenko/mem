@@ -135,17 +135,20 @@ definitions:
     allOf:
       - $ref: '#/definitions/BaseEntity'
       - properties:
-          contents:
+          visualContents:
             type: array
             items: 
-              $ref: '#/definitions/Content'
+              $ref: '#/definitions/VisualContent'
           questions:
             type: array
             items: 
               $ref: '#/definitions/Question'
-  Content:
+  VisualContent:
     allOf:
       - $ref: '#/definitions/BaseEntity'
+      - properties:
+          media: 
+            $ref: '#/definitions/UploadLocation'
   Question:
     allOf:
       - $ref: '#/definitions/BaseEntity'

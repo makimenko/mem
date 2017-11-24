@@ -13,6 +13,7 @@ import { EventSummaryComponent } from './event-summary/event-summary.component';
 import { QuestionListComponent } from './question-list/question-list.component';
 import { QuestionEditorComponent } from './question-editor/question-editor.component';
 import { QuestionAnswersComponent } from './question-answers/question-answers.component';
+import { GroupVisualContentComponent } from './group-visual-content/group-visual-content.component';
 
 const appRoutes: Routes = [
   { path: 'events', component: EventsComponent },
@@ -38,7 +39,8 @@ const appRoutes: Routes = [
     EventSummaryComponent,
     QuestionListComponent,
     QuestionEditorComponent,
-    QuestionAnswersComponent
+    QuestionAnswersComponent,
+    GroupVisualContentComponent
   ],
   exports: [
     RouterModule

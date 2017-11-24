@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef, ViewChild, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { UploadListener } from "./upload-listener";
+import { UploadListener } from "../../utils/upload-listener";
 import * as API from '../../api-generated';
 
 @Component({

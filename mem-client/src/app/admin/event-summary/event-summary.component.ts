@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import * as API from '../../api-generated';
-import { UploadListener } from "../upload-component/upload-listener";
+import { UploadListener } from "../../utils";
 
 @Component({
   selector: 'app-event-summary',

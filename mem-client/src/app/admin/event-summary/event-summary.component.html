@@ -1,7 +1,7 @@
 <div fxLayout="row">
   <div fxLayout="column">
     <img src="{{event.thumbnail | serverFile }}" class="thumbnail" />
-    <app-upload-component accept="image/jpeg,image/png,image/gif" multiple="false" [uploadListener]="this"></app-upload-component>
+    <app-upload-component accept="image/jpeg,image/png,image/gif" [multiple]="false" [uploadListener]="this"></app-upload-component>
   </div>
   <div fxLayout="column" fxFlex="auto">
     <mat-form-field fxFlex="auto">

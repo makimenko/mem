@@ -1,4 +1,4 @@
-import * as API from '../../api-generated';
+import * as API from '../api-generated';
 
 export interface UploadListener {
 
