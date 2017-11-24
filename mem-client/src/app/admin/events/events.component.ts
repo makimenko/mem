@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as API from '../../api-generated';
+import { MatDialog } from '@angular/material';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-events',
@@ -10,9 +12,12 @@ export class EventsComponent implements OnInit {
 
   events: API.Event[];
 
-  busy: boolean = false;
+  busy: boolean;
 
-  constructor(public questionService: API.QuestionService) { }
+  constructor(
+    public questionService: API.QuestionService,
+    public dialog: MatDialog
+  ) { }
 
   ngOnInit() {
     this.queryEvents();
@@ -29,10 +34,21 @@ export class EventsComponent implements OnInit {
 
   delete(event: API.Event) {
     console.log("Deleting event: " + event.uuid);
-    this.busy = true;
-    this.questionService.eventUuidDelete(event.uuid).subscribe(i => {
-      console.log("Deleted, reloading events...");
-      this.queryEvents();
+
+    let dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '250px',
+      data: {}
+    });
+
+    dialogRef.afterClosed().subscribe(confirmed => {
+      console.log('The dialog was closed. confirmed=' + confirmed);
+      if (confirmed) {
+        this.busy = true;
+        this.questionService.eventUuidDelete(event.uuid).subscribe(i => {
+          console.log("Deleted, reloading events...");
+          this.queryEvents();
+        });
+      }
     });
   }
 

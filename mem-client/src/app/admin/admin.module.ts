@@ -14,6 +14,8 @@ import { QuestionListComponent } from './question-list/question-list.component';
 import { QuestionEditorComponent } from './question-editor/question-editor.component';
 import { QuestionAnswersComponent } from './question-answers/question-answers.component';
 import { GroupVisualContentComponent } from './group-visual-content/group-visual-content.component';
+import { MatDialogModule } from '@angular/material';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 
 const appRoutes: Routes = [
   { path: 'events', component: EventsComponent },
@@ -27,6 +29,7 @@ const appRoutes: Routes = [
     MaterialDesignModule,
     FlexLayoutModule,
     PipesModule,
+    MatDialogModule,
     RouterModule.forRoot(
       appRoutes
     )
@@ -40,7 +43,11 @@ const appRoutes: Routes = [
     QuestionListComponent,
     QuestionEditorComponent,
     QuestionAnswersComponent,
-    GroupVisualContentComponent
+    GroupVisualContentComponent,
+    ConfirmDialogComponent
+  ],
+  entryComponents: [
+    ConfirmDialogComponent
   ],
   exports: [
     RouterModule
