@@ -1,11 +1,17 @@
 package com.makimenko.mem.server.dao;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.Reader;
 import java.io.Writer;
 import java.lang.reflect.Type;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -57,7 +63,9 @@ public class DatabaseDao {
 				events = new ArrayList<>();
 				save();
 			}
-			JsonReader reader = new JsonReader(new FileReader(file));
+			Reader fileReader = new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8);
+			JsonReader reader = new JsonReader(fileReader);
+
 			events = gson.fromJson(reader, EVENTS_TYPE);
 		} catch (Exception e) {
 			throw new MemException("Unable to load data from file", e);
@@ -66,7 +74,8 @@ public class DatabaseDao {
 
 	public void save() {
 		log.debug("Save events to file {}", file.getName());
-		try (Writer writer = new FileWriter(file)) {
+
+		try (Writer writer = new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8)) {
 			gson.toJson(events, writer);
 		} catch (Exception e) {
 			throw new MemException("Unable to save file", e);
