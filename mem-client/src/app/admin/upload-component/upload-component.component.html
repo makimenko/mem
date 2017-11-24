@@ -1,5 +1,11 @@
-<button mat-button (click)="fileInput.click()">
+<button mat-button (click)="fileInput.click()" *ngIf="!multiple">
   <mat-icon>add_a_photo</mat-icon>
   <span>Select File</span>
   <input #fileInput type="file" (change)="onFileChange($event)" style="display:none;" />
+</button>
+
+<button mat-button (click)="fileInput.click()" *ngIf="multiple">
+  <mat-icon>add_a_photo</mat-icon>
+  <span>Select Files</span>
+  <input #fileInput type="file" (change)="onFileChange($event)" style="display:none;" multiple />
 </button>

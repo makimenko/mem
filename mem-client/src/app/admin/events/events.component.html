@@ -1,3 +1,5 @@
+<mat-progress-bar mode="{{(busy?'indeterminate':'determinate')}}"></mat-progress-bar>
+
 <div fxLayout="row" fxLayoutWrap fxLayoutAlign="start" class="container">
 
   <mat-card fxFlex="300px" *ngFor="let event of events" fxLayout="column" fxLayoutAlign="space-between">

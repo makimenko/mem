@@ -4,13 +4,21 @@
     "name": "Cloud Part 1",
     "subTitle": "Fundamental Cloud Computing",
     "thumbnail": {
-      "url": "/upload/image/jpeg/a1d53324-e574-46cb-b014-00a1f3f74c73_CCP_module01-214x300.jpg"
+      "url": "CCP_module01-214x300.jpg"
     },
     "description": "Sample from www.arcitura.com. This foundational course provides end-to-end coverage of fundamental cloud computing topics as they pertain to both technology and business considerations. The course content is divided into a series of modular sections, each of which is accompanied by one or more hands-on exercises.",
     "groups": [
       {
         "uuid": "2809a09e-e81d-4454-9701-77727c1f33a5",
         "name": "Basic Concepts and Terminology",
+        "visualContents": [
+          {
+            "uuid": "ceaf13f4-2a55-407c-ab2f-ffdd120bd3dc",
+            "media": {
+              "url": "CloudRainbow.jpg"
+            }
+          }
+        ],
         "questions": [
           {
             "uuid": "09c55ed6-d3e6-4013-9d70-4eab6c2089c1",
@@ -58,7 +66,15 @@
       },
       {
         "uuid": "16df0ce7-1b26-482b-baaf-03a3120c5070",
-        "name": "Cloud Characteristics",
+        "name": "Characteristics",
+        "visualContents": [
+          {
+            "uuid": "61addf85-029c-48c5-a872-5d35f220ff43",
+            "media": {
+              "url": "CloudSunset.jpg"
+            }
+          }
+        ],
         "questions": [
           {
             "uuid": "af11e617-7f4d-476f-9a59-90aac46e3253",
@@ -109,6 +125,40 @@
             ]
           }
         ]
+      },
+      {
+        "uuid": "56f04106-076e-4fc5-bf04-5d29efa89954",
+        "name": "Horizontal Scaling",
+        "visualContents": [
+          {
+            "uuid": "5f12ec82-bb59-41d1-a553-a5cfd0d0217c",
+            "media": {
+              "url": "HorizontalScale2.png"
+            }
+          },
+          {
+            "uuid": "79d629d6-7b33-4ed1-af92-42ed21adc9e6",
+            "media": {
+              "url": "HorizonalScalability.jpg"
+            }
+          }
+        ],
+        "questions": [
+          {
+            "uuid": "f19e2bae-ca9d-4a8a-8cbc-1909fb23ebb7",
+            "name": "What kind of scaling is shown on image?",
+            "answers": [
+              {
+                "uuid": "01b9e392-baba-4dcc-878e-e77fcf7b0e92",
+                "name": "Horizontal Scaling (Scale out)"
+              },
+              {
+                "uuid": "a4eda686-7698-4d90-8c50-76454d811350",
+                "name": "Vertical Scaling (Scale in)"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -117,57 +167,14 @@
     "name": "Простой Тест",
     "subTitle": "Charset Testing",
     "thumbnail": {
-      "url": "/upload/image/jpeg/ec3eca8c-b2a6-411e-927a-2ec361b2bac7_vertical.jpg"
+      "url": "question.png"
     },
     "description": "this event is just for simple testing ",
     "groups": [
       {
         "uuid": "2bdf8be1-5abb-4441-9987-b4989c502728",
         "name": "Simple Questions",
-        "visualContents": [
-          {
-            "uuid": "1b03b492-034e-4e82-9be5-f5223d1cdc5e",
-            "media": {
-              "url": "/upload/image/jpeg/b39d6ef6-b992-49de-9a39-cae4afddf978_sample2.jpg"
-            }
-          },
-          {
-            "uuid": "bbebc5c5-7f4f-463e-978c-7c4e1f2015b9",
-            "media": {
-              "url": "/upload/image/jpeg/0f78e549-f3b7-4d5e-b41b-ce8d32a1ff8d_2017-10-25_17-31-31.jpg"
-            }
-          },
-          {
-            "uuid": "bfc70746-8bf8-4229-a5c3-907cced22830",
-            "media": {
-              "url": "/upload/image/jpeg/0830273e-b8d4-41ad-b588-4685a7fc0882_sample2 - Copy - Copy.jpg"
-            }
-          },
-          {
-            "uuid": "af401927-4fe8-41b5-8277-f75cc14a8e89",
-            "media": {
-              "url": "/upload/image/jpeg/552adec7-086f-4792-8a07-b043d952e909_sample2.jpg"
-            }
-          },
-          {
-            "uuid": "45104871-7b9a-4e0c-b27d-8a65e33a52ac",
-            "media": {
-              "url": "/upload/image/jpeg/71b0e5ee-63b4-494f-a561-3d1cc89e42e4_sample2 - Copy - Copy.jpg"
-            }
-          },
-          {
-            "uuid": "017bdbad-6c3a-4af1-bf3b-1076f15ba1ee",
-            "media": {
-              "url": "/upload/image/jpeg/28e47dd9-85e7-4e3f-a8da-4501aa042f2c_sample2 - Copy.jpg"
-            }
-          },
-          {
-            "uuid": "379a207c-ded3-4833-8833-07e4eccad46c",
-            "media": {
-              "url": "/upload/image/jpeg/a7a7c439-0974-41e7-9a9a-9ed3412404e9_sample2 - Copy (2).jpg"
-            }
-          }
-        ],
+        "visualContents": [],
         "questions": [
           {
             "uuid": "29a10513-8361-4538-bf1e-73dadae77c85",

@@ -47,6 +47,7 @@ public class EventsApiController implements EventsApi {
 			shortEvent.setName(i.getName());
 			shortEvent.setSubTitle(i.getSubTitle());
 			shortEvent.setThumbnail(i.getThumbnail());
+			shortEvent.setDescription(i.getDescription());
 			shortList.add(shortEvent);
 		});
 		log.trace("Total number of events = {}", shortList.size());

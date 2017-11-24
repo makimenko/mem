@@ -1,43 +1,27 @@
 package com.makimenko.mem.server.dao;
 
 import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.io.Writer;
-import java.lang.reflect.Type;
-import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
-
-import javax.annotation.PostConstruct;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.FileSystemResource;
-import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.stream.JsonReader;
 import com.makimenko.mem.server.exception.MemException;
-import com.makimenko.mem.server.exception.MemNoDataFoundException;
-import com.makimenko.mem.server.exception.MemStorgeFileNotFoundException;
-import com.makimenko.mem.server.model.Event;
 import com.makimenko.mem.server.model.UploadLocation;
 
 @Component
 public class ServerFileDao {
 	private static final Logger log = LoggerFactory.getLogger(ServerFileDao.class);
 
-	@Value("${upload.dir:data/upload}")
+	@Value("${upload.dir}")
 	private String uploadDir;
+
+	public String getEncodedFileName(String fileName) {
+		return fileName;
+	}
 
 	public File getFile(String fileName) {
 		File dir = new File(uploadDir);
@@ -68,26 +52,9 @@ public class ServerFileDao {
 
 	public UploadLocation getUploadLocation(File file) {
 		UploadLocation location = new UploadLocation();
-		try {
-			String encoded = URLEncoder.encode(file.getName(), "UTF-8");
-			location.setUrl(encoded);
-		} catch (UnsupportedEncodingException e) {
-			log.error("Failed to encode location url", e);
-			throw new MemException(e);
-		}
+		location.setUrl(file.getName());
 		log.debug("Upload Location=" + location);
 		return location;
-	}
-
-	public Resource loadAsResource(String locationUrl) {
-		// TODO: implement
-		File file = getFile(locationUrl);
-		if (!file.exists()) {
-			log.warn("File not found: {}", file.getAbsolutePath());
-			throw new MemStorgeFileNotFoundException("File not found: " + file.getAbsolutePath());
-		}
-		Resource resource = new FileSystemResource(file);
-		return resource;
 	}
 
 }
