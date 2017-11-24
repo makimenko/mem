@@ -10,6 +10,10 @@ basePath: "/"
 tags:
   - name: question
     description: "Everything related to Questions"
+  - name: upload
+    description: "Everything related to Upload"
+  - name: download
+    description: "Everything related to Download"
 schemes:
 - "http"
 paths:
@@ -103,6 +107,23 @@ paths:
           description: Returns file location on server
           schema:
             $ref: "#/definitions/UploadLocation"
+  /download/{url:.+}:
+    get:
+      tags:
+        - download
+      description: "Download image file from server"
+      parameters: 
+        - 
+          name: "url:.+"
+          in: "path"
+          type: string
+          description: "File Location"
+          required: true
+      responses:
+        200:
+          description: Returns File from Server
+          schema: 
+            type: file
 definitions:
   UploadLocation:
     type: "object"

@@ -1,6 +1,6 @@
 package com.makimenko.mem.server.exception;
 
-public class MemNoDataFoundException extends RuntimeException {
+public class MemNoDataFoundException extends MemException {
 
 	private static final long serialVersionUID = -3622081256811423535L;
 

@@ -11,7 +11,7 @@ export class ServerFilePipe implements PipeTransform {
 
   transform(value: API.UploadLocation): string {
     if (value != undefined && value.url != undefined) {
-      return this.basePath + value.url;
+      return this.basePath + "/download/"+value.url;
     } else {
       return undefined;
     }

@@ -10,6 +10,7 @@ import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.makimenko.mem.server.dao.ServerFileDao;
+import com.makimenko.mem.server.exception.MemException;
 import com.makimenko.mem.server.model.UploadLocation;
 
 import io.swagger.annotations.ApiParam;
@@ -35,54 +38,37 @@ public class UploadApiController implements UploadApi {
 
 	private final HttpServletRequest request;
 
-	@Value("${upload.dir:public/upload}")
-	private String uploadDir;
+	@Autowired
+	private ServerFileDao serverFileDao;
 
-	@Value("${upload.url:/upload/}")
-	private String uploadUrl;
-
-	@org.springframework.beans.factory.annotation.Autowired
+	@Autowired
 	public UploadApiController(ObjectMapper objectMapper, HttpServletRequest request) {
 		this.objectMapper = objectMapper;
 		this.request = request;
 	}
 
 	public ResponseEntity<UploadLocation> uploadPost(
-			@ApiParam(value = "file detail") @Valid @RequestPart("file") MultipartFile file) {
-
-		log.info("Uploading file: {}", file.getOriginalFilename());
-		if (!file.isEmpty()) {
-
+			@ApiParam(value = "file detail") @Valid @RequestPart("file") MultipartFile multipartFile) {
+		log.info("Uploading file: {}", multipartFile.getOriginalFilename());
+		if (!multipartFile.isEmpty()) {
 			try {
-				// Creating the directory to store file
-				File dir = new File(uploadDir + File.separator + file.getContentType());
-				if (!dir.exists()) {
-					dir.mkdirs();
+				File serverFile = serverFileDao.getUploadTarget(multipartFile);
+				log.debug("Server File Location=" + serverFile.getAbsolutePath());
+				try (BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile))) {
+					byte[] bytes = multipartFile.getBytes();
+					stream.write(bytes);
+					stream.close();
 				}
-
-				// Create the file on server
-				String name = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
-				File serverFile = new File(dir.getAbsolutePath() + File.separator + name);
-				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
-				byte[] bytes = file.getBytes();
-				stream.write(bytes);
-				stream.close();
-
-				log.info("Server File Location=" + serverFile.getAbsolutePath());
-
-				UploadLocation location = new UploadLocation();
-				// TODO: fixme
-				location.setUrl(uploadUrl + file.getContentType() + "/" + name);
+				UploadLocation location = serverFileDao.getUploadLocation(serverFile);
 				return new ResponseEntity<UploadLocation>(location, HttpStatus.OK);
 			} catch (Exception e) {
 				log.warn("Failed to updaload file", e);
-				return new ResponseEntity<UploadLocation>(HttpStatus.EXPECTATION_FAILED);
+				return new ResponseEntity<UploadLocation>(HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 		} else {
 			log.warn("File name and/or content are empty");
 			return new ResponseEntity<UploadLocation>(HttpStatus.NO_CONTENT);
 		}
-
 	}
 
 }
