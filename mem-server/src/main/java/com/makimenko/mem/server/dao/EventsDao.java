@@ -32,8 +32,8 @@ import com.makimenko.mem.server.exception.MemNoDataFoundException;
 import com.makimenko.mem.server.model.Event;
 
 @Component
-public class DatabaseDao {
-	private static final Logger log = LoggerFactory.getLogger(DatabaseDao.class);
+public class EventsDao {
+	private static final Logger log = LoggerFactory.getLogger(EventsDao.class);
 
 	@Value("${database.filePath:data/events.json}")
 	private String filePath;

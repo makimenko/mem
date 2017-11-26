@@ -17,7 +17,7 @@ import { GroupVisualContentComponent } from './group-visual-content/group-visual
 import { MatDialogModule } from '@angular/material';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 
-const appRoutes: Routes = [
+const adminRoutes: Routes = [
   { path: 'events', component: EventsComponent },
   { path: 'event-detail/:uuid', component: EventDetailComponent }
 ];
@@ -31,7 +31,7 @@ const appRoutes: Routes = [
     PipesModule,
     MatDialogModule,
     RouterModule.forRoot(
-      appRoutes
+      adminRoutes
     )
   ],
   declarations: [

@@ -1,0 +1,6 @@
+<mat-progress-bar mode="determinate" [value]="progress"></mat-progress-bar>
+
+<div *ngIf="sessionService.game">
+  <app-step [gameStep]="currentGameStep" [gameComponent]="this"></app-step>
+
+</div>

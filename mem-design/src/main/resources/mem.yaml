@@ -12,6 +12,8 @@ tags:
     description: "Everything related to Questions"
   - name: upload
     description: "Everything related to Upload"
+  - name: game
+    description: "Game Play"
 schemes:
 - "http"
 paths:
@@ -105,6 +107,27 @@ paths:
           description: Returns file location on server
           schema:
             $ref: "#/definitions/UploadLocation"
+  /game/new:
+    post:
+      tags:
+        - game
+      summary: Return new game details
+      description: "Return new game details"
+      produces:
+        - application/json
+      parameters: 
+        - 
+          name: "gameOption"
+          in: "body"
+          description: "Game Options"
+          required: true
+          schema: 
+            $ref: "#/definitions/GameOption"
+      responses:
+        "200":
+          description: New game content
+          schema:
+            $ref: "#/definitions/Game"
 definitions:
   UploadLocation:
     type: "object"
@@ -165,3 +188,30 @@ definitions:
       - properties:
           expected:
             type: boolean
+  GameStep:
+    allOf:
+      - $ref: '#/definitions/VisualContent'
+      - properties:
+          inputQuestion:
+            $ref: '#/definitions/Question'
+          outputAnswer:
+            $ref: '#/definitions/Question'
+  Game:
+    allOf:
+      - $ref: '#/definitions/BaseEntity'
+      - properties:
+          gameType:
+            $ref: '#/definitions/GameType'
+          gameSteps:
+            type: array
+            items: 
+              $ref: '#/definitions/GameStep'
+  GameType:
+    type: string
+    enum:
+      - "simple"
+  GameOption:
+    type: object
+    properties:
+      gameType:
+        $ref: '#/definitions/GameType'

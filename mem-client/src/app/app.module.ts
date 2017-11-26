@@ -10,6 +10,8 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes} from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { AdminModule } from './admin/admin.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { GameModule } from './game/game.module';
 
 const appRoutes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -26,8 +28,10 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     FormsModule,
     ApiModule,
+    FlexLayoutModule,
     MaterialDesignModule,
     AdminModule,
+    GameModule,
     RouterModule.forRoot(
       appRoutes
     )

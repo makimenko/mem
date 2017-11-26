@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Strings;
-import com.makimenko.mem.server.dao.DatabaseDao;
+import com.makimenko.mem.server.dao.EventsDao;
 import com.makimenko.mem.server.exception.MemNoDataFoundException;
 import com.makimenko.mem.server.model.Event;
 
@@ -35,7 +35,7 @@ public class EventApiController implements EventApi {
 	private final HttpServletRequest request;
 
 	@Autowired
-	private DatabaseDao databaseDao;
+	private EventsDao databaseDao;
 
 	@org.springframework.beans.factory.annotation.Autowired
 	public EventApiController(ObjectMapper objectMapper, HttpServletRequest request) {

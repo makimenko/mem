@@ -10,7 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.makimenko.mem.server.dao.DatabaseDao;
+import com.makimenko.mem.server.dao.EventsDao;
 import com.makimenko.mem.server.model.Event;
 
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
@@ -22,7 +22,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class DatabaseTests {
 
 	@Autowired
-	private DatabaseDao dao;
+	private EventsDao dao;
 
 	@Test
 	public void testSave() {

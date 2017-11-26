@@ -14,7 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.makimenko.mem.server.dao.DatabaseDao;
+import com.makimenko.mem.server.dao.EventsDao;
 import com.makimenko.mem.server.model.Event;
 
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2017-11-17T15:15:20.914+02:00")
@@ -30,7 +30,7 @@ public class EventsApiController implements EventsApi {
 	private final HttpServletRequest request;
 
 	@Autowired
-	private DatabaseDao databaseDao;
+	private EventsDao databaseDao;
 
 	@org.springframework.beans.factory.annotation.Autowired
 	public EventsApiController(ObjectMapper objectMapper, HttpServletRequest request) {

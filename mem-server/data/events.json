@@ -1,202 +1,8 @@
 [
   {
-    "uuid": "ef828f56-7489-45ff-992a-b4f894f93d09",
-    "name": "Cloud Part 1",
-    "subTitle": "Fundamental Cloud Computing",
-    "thumbnail": {
-      "url": "CCP_module01-214x300.jpg"
-    },
-    "description": "Sample from www.arcitura.com. This foundational course provides end-to-end coverage of fundamental cloud computing topics as they pertain to both technology and business considerations. The course content is divided into a series of modular sections, each of which is accompanied by one or more hands-on exercises.",
-    "groups": [
-      {
-        "uuid": "2809a09e-e81d-4454-9701-77727c1f33a5",
-        "name": "Basic Concepts and Terminology",
-        "visualContents": [
-          {
-            "uuid": "ceaf13f4-2a55-407c-ab2f-ffdd120bd3dc",
-            "media": {
-              "url": "CloudRainbow.jpg"
-            }
-          }
-        ],
-        "questions": [
-          {
-            "uuid": "09c55ed6-d3e6-4013-9d70-4eab6c2089c1",
-            "name": "Distinct IT environment that is designed for the purpose of remotely provisioning scalable and measured IT resources",
-            "answers": [
-              {
-                "uuid": "4bf58d68-5bbf-4dff-87ed-c734ab60b93b",
-                "name": "Cloud",
-                "expected": true
-              },
-              {
-                "uuid": "7da3bc68-b8da-4d71-9ccc-3ad8f2725369",
-                "name": "Data Center"
-              },
-              {
-                "uuid": "49320ec9-7776-4523-892b-1df0f4534b0b",
-                "name": "Scalable Environment"
-              },
-              {
-                "uuid": "497a42f1-c9e2-4ef1-a3f4-b99f53a6f456",
-                "name": "On-Premise Environment"
-              }
-            ]
-          },
-          {
-            "uuid": "593c264b-78a3-428d-aa71-bb1bc9a752f6",
-            "name": "Physical or virtual IT-related artifact that can be either software based, such as a virtual server or a custom software program, or hardware-based, such as a physical server or a network device",
-            "answers": [
-              {
-                "uuid": "6fb04727-7e03-4dbe-a72b-720beb67572b",
-                "name": "IT Resource",
-                "expected": true
-              },
-              {
-                "uuid": "6a3444bb-703f-47a0-9b5f-a51028f81fb5",
-                "name": "Connectivity"
-              },
-              {
-                "uuid": "17845c1c-4f3f-4112-b3c4-bc15a4c4c6e1",
-                "name": "Cloud"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "uuid": "16df0ce7-1b26-482b-baaf-03a3120c5070",
-        "name": "Characteristics",
-        "visualContents": [
-          {
-            "uuid": "61addf85-029c-48c5-a872-5d35f220ff43",
-            "media": {
-              "url": "CloudSunset.jpg"
-            }
-          }
-        ],
-        "questions": [
-          {
-            "uuid": "af11e617-7f4d-476f-9a59-90aac46e3253",
-            "name": "Cloud Characteristics (select all that apply)",
-            "answers": [
-              {
-                "uuid": "57b918b8-c4f8-4a7d-bc15-ca6f679302d2",
-                "name": "On-Demand Usage",
-                "expected": true
-              },
-              {
-                "uuid": "134fd1cc-a7fa-445c-9c0e-034eb296645a",
-                "name": "Ubiquitous Access",
-                "expected": true
-              },
-              {
-                "uuid": "00df3db3-f681-4291-b95d-dd7a88b78bc7",
-                "name": "Multi-tenancy (Resourcing Pooling)",
-                "expected": true
-              },
-              {
-                "uuid": "a6ddcd97-a66a-4e5b-8e3c-cdec7e34d90a",
-                "name": "Elasticity (and Scalability)",
-                "expected": true
-              },
-              {
-                "uuid": "1283fe9e-c6df-478a-8c15-524014e0a363",
-                "name": "Measured Usage",
-                "expected": true
-              },
-              {
-                "uuid": "2b87740f-43e5-4644-ae08-044735fd148d",
-                "name": "Resiliency",
-                "expected": true
-              },
-              {
-                "uuid": "5a95b8e4-9f7b-46a6-9354-d6f103cdc9e7",
-                "name": "Performance"
-              },
-              {
-                "uuid": "85f9e592-054d-4136-aab3-94943e12f99e",
-                "name": "High-End"
-              },
-              {
-                "uuid": "539d9d75-f91c-4fcf-932c-fc09046c011e",
-                "name": "Top-end"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "uuid": "56f04106-076e-4fc5-bf04-5d29efa89954",
-        "name": "Horizontal Scaling",
-        "visualContents": [
-          {
-            "uuid": "5f12ec82-bb59-41d1-a553-a5cfd0d0217c",
-            "media": {
-              "url": "HorizontalScale2.png"
-            }
-          },
-          {
-            "uuid": "79d629d6-7b33-4ed1-af92-42ed21adc9e6",
-            "media": {
-              "url": "HorizonalScalability.jpg"
-            }
-          }
-        ],
-        "questions": [
-          {
-            "uuid": "f19e2bae-ca9d-4a8a-8cbc-1909fb23ebb7",
-            "name": "What kind of scaling is shown on image?",
-            "answers": [
-              {
-                "uuid": "01b9e392-baba-4dcc-878e-e77fcf7b0e92",
-                "name": "Horizontal Scaling (Scale out)"
-              },
-              {
-                "uuid": "a4eda686-7698-4d90-8c50-76454d811350",
-                "name": "Vertical Scaling (Scale in)"
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "uuid": "ca7b097b-2846-42fb-9eea-a89f118b204c",
-    "name": "Простой Тест",
-    "subTitle": "Charset Testing",
-    "thumbnail": {
-      "url": "question.png"
-    },
-    "description": "this event is just for simple testing ",
-    "groups": [
-      {
-        "uuid": "2bdf8be1-5abb-4441-9987-b4989c502728",
-        "name": "Simple Questions",
-        "visualContents": [],
-        "questions": [
-          {
-            "uuid": "29a10513-8361-4538-bf1e-73dadae77c85",
-            "name": "kghasdjasdkjahsdkjhaskjdhakjsdhkajdhskjahsdkjahsdkjhasdh sdakjskjah dkghasdjasdkjahsdkjhaskjdhakjsdhkajdhskjahsdkjahsdkjhasdh ",
-            "answers": [
-              {
-                "uuid": "dad4fc1d-8f42-4118-b56d-3a30caf57bae",
-                "name": "Option 1"
-              },
-              {
-                "uuid": "8b3bd44f-7d6d-4ac4-8d54-35a4049a40bf",
-                "name": "Option 2"
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  {
     "uuid": "d5168c33-5ff9-474b-8d53-4d1a6014144c",
     "name": "Travelling",
+    "subTitle": "Невероятные путешествия",
     "thumbnail": {
       "url": "Travel.jpg"
     },
@@ -251,24 +57,24 @@
           },
           {
             "uuid": "52115ea9-51d2-449c-aa2e-71d0097e7450",
-            "name": "Where a photo was taken?",
+            "name": "When photo was taken?",
             "answers": [
               {
                 "uuid": "803b843d-09fa-4e69-b81b-4ac6822b7a25",
-                "name": "United Kingdom",
+                "name": "2015",
                 "expected": true
               },
               {
                 "uuid": "9ff3da14-65bf-4f55-8990-7951a204032a",
-                "name": "Latvia"
+                "name": "2016"
               },
               {
                 "uuid": "cebb01fd-8a6a-403c-ab8a-29aea0edf07f",
-                "name": "Lithuania"
+                "name": "2013"
               },
               {
                 "uuid": "1ee476c7-85b7-4b21-aebe-d72a542125cc",
-                "name": "United States of America"
+                "name": "2011"
               }
             ]
           }
@@ -317,24 +123,24 @@
           },
           {
             "uuid": "8541d2a3-b858-482a-b01e-259eb1513012",
-            "name": "Where a photo was taken?",
+            "name": "When a photo was taken?",
             "answers": [
               {
                 "uuid": "ae57833a-0d1f-4d55-8d9b-83dd2c1b1d2f",
-                "name": "Latvia",
+                "name": "2017",
                 "expected": true
               },
               {
                 "uuid": "c062cf45-5952-408d-99b2-4cd2dd2ae8e4",
-                "name": "Lithuania"
+                "name": "2016"
               },
               {
                 "uuid": "03c2c66b-1e06-41a5-82f5-b57ba7b95271",
-                "name": "United Kingdom"
+                "name": "2015"
               },
               {
                 "uuid": "8e82fd69-8f2c-4b2a-9b6f-f2ac5afa4f53",
-                "name": "Russia"
+                "name": "2014"
               }
             ]
           }
