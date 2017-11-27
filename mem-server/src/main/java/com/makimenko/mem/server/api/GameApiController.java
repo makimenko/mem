@@ -50,7 +50,7 @@ public class GameApiController implements GameApi {
 	public ResponseEntity<Game> gameNewPost(
 			@ApiParam(value = "Game Options", required = true) @Valid @RequestBody GameOption gameOption) {
 		log.info("Requsted new game");
-		Game game = gameDao.createGame(gameOption.getGameType());
+		Game game = gameDao.createGame(gameOption);
 		return new ResponseEntity<Game>(game, HttpStatus.OK);
 	}
 

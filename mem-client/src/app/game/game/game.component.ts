@@ -94,7 +94,7 @@ export class GameComponent implements OnInit {
     if (this.currentGameStep.media != undefined && this.currentGameStep.media.url != undefined) {
       let imageUrl = this.serverFilePipe.transform(this.currentGameStep.media)
       console.log("getQuestionContentMediaStyle - Image: " + imageUrl);
-      return this.sanitizer.bypassSecurityTrustStyle("background-image:url(" + imageUrl + ")");
+      return this.sanitizer.bypassSecurityTrustStyle("background-image:url('" + imageUrl + "')");
     }
   }
 

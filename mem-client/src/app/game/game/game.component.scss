@@ -5,10 +5,10 @@ app-game, .media, content {
 }
 
 .media {
-  background-color: #FAFAFA;
+  background-color: black;
   background-repeat: no-repeat;
   background-position: center;
-  background-size: cover;
+  background-size: contain;
 }
 
 .results > * > h3 {
@@ -26,9 +26,10 @@ app-game, .media, content {
 }
 
 .options {
-  background: rgba(200,200,200,0.2);
+  background: rgba(200,200,200,0.5);
   width:100%;
-  padding-bottom: 7%;
+  padding-top: 10px;
+  padding-bottom: 30px;
 }
 
 .correct {

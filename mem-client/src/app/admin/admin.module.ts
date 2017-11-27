@@ -16,10 +16,15 @@ import { QuestionAnswersComponent } from './question-answers/question-answers.co
 import { GroupVisualContentComponent } from './group-visual-content/group-visual-content.component';
 import { MatDialogModule } from '@angular/material';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { AdminHomeComponent } from './admin-home/admin-home.component';
 
 const adminRoutes: Routes = [
-  { path: 'events', component: EventsComponent },
-  { path: 'event-detail/:uuid', component: EventDetailComponent }
+  { path: 'admin', component: AdminHomeComponent 
+   ,children: [
+    { path: 'events', component: EventsComponent },
+    { path: 'event-detail/:uuid', component: EventDetailComponent }
+   ]
+  }
 ];
 
 @NgModule({
@@ -44,7 +49,8 @@ const adminRoutes: Routes = [
     QuestionEditorComponent,
     QuestionAnswersComponent,
     GroupVisualContentComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    AdminHomeComponent
   ],
   entryComponents: [
     ConfirmDialogComponent
