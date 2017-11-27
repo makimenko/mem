@@ -1,6 +1,32 @@
 <mat-progress-bar mode="determinate" [value]="progress"></mat-progress-bar>
 
-<div *ngIf="sessionService.game">
-  <app-step [gameStep]="currentGameStep" [gameComponent]="this"></app-step>
+<div *ngIf="currentGameStep && !showingGameEnd" class="media" [style]="getQuestionContentMediaStyle()">
+    <div class="content" fxLayout="column" fxLayoutAlign="end center">
+        <div class="question">
+            <h1>
+                {{currentGameStep.inputQuestion.name}}
+            </h1>
+        </div>
+        <div [class]="(showingStepResult?(lastStepCorrect?'options correct':'options incorrect'):'options')" fxLayout="row" fxLayoutWrap
+            fxLayoutAlign="center">
+            <button mat-raised-button fxFlex="40%" *ngFor="let answer of currentGameStep.inputQuestion.answers" (click)="selectAnswer(answer)"
+                [disabled]="showingStepResult">
+                <span [class]="(showingStepResult?(answer.expected?'expected':'unexpected')+' '+(answer==lastAnswer?'selected':''):'')">
+                {{answer.name}}                
+                </span>
+            </button>
+        </div>
+    </div>
+</div>
 
+<div *ngIf="showingGameEnd" class="results">
+    <div fxLayout="column" fxLayoutAlign="start center">
+        <h1>Results</h1>
+        <h3 [class]="(stats.correct / stats.total * 100 > 80 ? 'expected':'unexpected')">{{stats.correct / stats.total * 100}}%</h3>
+        <h4>{{stats.correct}} / {{stats.total}}</h4>
+
+        <button mat-raised-button routerLink="/gameSelect">
+            Ok
+        </button>
+    </div>
 </div>

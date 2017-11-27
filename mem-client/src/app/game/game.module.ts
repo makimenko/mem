@@ -1,15 +1,15 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgModule, PipeTransform } from '@angular/core';
+import { CommonModule, NgStyle } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MaterialDesignModule } from '../material-design/material-design.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { PipesModule } from '../pipes/pipes.module';
 import { MatDialogModule } from '@angular/material';
 import { RouterModule, Routes } from '@angular/router';
-import { StepComponent } from './step/step.component';
 import { GameComponent } from './game/game.component';
 import { GameSelectComponent } from './game-select/game-select.component';
 import { SessionService } from './services/session.service';
+import { ServerFilePipe } from "../pipes/server-file.pipe";
 
 const gameRoutes: Routes = [
   { path: 'gameSelect', component: GameSelectComponent },
@@ -23,13 +23,12 @@ const gameRoutes: Routes = [
     MaterialDesignModule,
     FlexLayoutModule,
     PipesModule,
-    MatDialogModule,
+    MatDialogModule,    
     RouterModule.forRoot(
       gameRoutes
     )
   ],
   declarations: [
-    StepComponent,
     GameComponent,
     GameSelectComponent
   ],
@@ -37,7 +36,8 @@ const gameRoutes: Routes = [
     RouterModule
   ],
   providers: [
-    SessionService
+    SessionService,
+    ServerFilePipe
   ]
 })
 export class GameModule { }

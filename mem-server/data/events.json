@@ -6,28 +6,28 @@
     "thumbnail": {
       "url": "Travel.jpg"
     },
-    "description": "Demonstration of Travelling Memory Quiz. Shows scrambling of questions.",
+    "description": "Demonstration of Travelling Memory Quiz. Shows scrambling functionality in action.",
     "groups": [
       {
         "uuid": "effcd2d8-5f1c-4a72-8310-f65efdec9be2",
         "name": "London",
         "visualContents": [
           {
-            "uuid": "d0234487-9269-4eec-a107-db1724144b04",
+            "uuid": "8489f903-4802-4825-b876-c293186ff3cb",
             "media": {
               "url": "London2.jpeg"
             }
           },
           {
-            "uuid": "17b37856-e443-4d02-a9f4-ff69dcde994d",
+            "uuid": "1a3adc3f-3b46-4c96-9431-77f4aa1039c9",
             "media": {
-              "url": "London1.jpg"
+              "url": "London3.jpg"
             }
           },
           {
-            "uuid": "e57a746e-ec78-46bc-924f-3c3ec248a290",
+            "uuid": "2b498dc1-e3fa-4c99-aa21-5a168741c6c9",
             "media": {
-              "url": "London3.jpg"
+              "url": "London1.jpg"
             }
           }
         ],
@@ -104,7 +104,7 @@
             "answers": [
               {
                 "uuid": "50152ec2-7a5d-43a8-9664-1f578ca1289f",
-                "name": "RIga",
+                "name": "Riga",
                 "expected": true
               },
               {
