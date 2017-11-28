@@ -15,6 +15,7 @@ import org.springframework.web.servlet.config.annotation.ContentNegotiationConfi
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import com.makimenko.mem.server.api.EventApiController;
@@ -53,5 +54,8 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 		log.info("addResourceHandlers: Map download folder to {}", this.uploadDir);
 		registry.addResourceHandler("/download/**").addResourceLocations("file:" + uploadDir);
 	}
+	
+	
+	
 
 }
