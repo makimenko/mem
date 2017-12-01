@@ -7,7 +7,7 @@ app-game, .media, content {
 .media {
   background-color: black;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: right;
   background-size: contain;
 }
 
@@ -28,8 +28,8 @@ app-game, .media, content {
 .options {
   background: rgba(200,200,200,0.5);
   width:100%;
-  padding-top: 10px;
-  padding-bottom: 30px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .correct {
