@@ -10,13 +10,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.makimenko.mem.server.exception.MemException;
 import com.makimenko.mem.server.model.Answer;
-import com.makimenko.mem.server.model.Event;
 import com.makimenko.mem.server.model.Game;
 import com.makimenko.mem.server.model.GameOption;
 import com.makimenko.mem.server.model.GameStep;
-import com.makimenko.mem.server.model.GameType;
 import com.makimenko.mem.server.model.Question;
 import com.makimenko.mem.server.model.VisualContent;
 
@@ -26,7 +23,7 @@ public class GameDao {
 	private static final Logger log = LoggerFactory.getLogger(GameDao.class);
 
 	// TODO: Game Option
-	private final int MAX_QUESTIONS = 10;
+	private final int MAX_QUESTIONS = 20;
 	private final int MAX_OPTIONS = 4;
 	private List<GameStep> allCombinations;
 

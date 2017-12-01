@@ -35,11 +35,7 @@ export class EventsComponent implements OnInit {
   delete(event: API.Event) {
     console.log("Deleting event: " + event.uuid);
 
-    let dialogRef = this.dialog.open(ConfirmDialogComponent, {
-      width: '250px',
-      data: {}
-    });
-
+    let dialogRef = this.dialog.open(ConfirmDialogComponent);
     dialogRef.afterClosed().subscribe(confirmed => {
       console.log('The dialog was closed. confirmed=' + confirmed);
       if (confirmed) {

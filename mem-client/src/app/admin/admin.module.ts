@@ -17,6 +17,7 @@ import { GroupVisualContentComponent } from './group-visual-content/group-visual
 import { MatDialogModule } from '@angular/material';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { AdminHomeComponent } from './admin-home/admin-home.component';
+import { AutoFocusDirective } from './question-answers/auto-focus.directive';
 
 const adminRoutes: Routes = [
   { path: 'admin', component: AdminHomeComponent 
@@ -50,7 +51,8 @@ const adminRoutes: Routes = [
     QuestionAnswersComponent,
     GroupVisualContentComponent,
     ConfirmDialogComponent,
-    AdminHomeComponent
+    AdminHomeComponent,
+    AutoFocusDirective
   ],
   entryComponents: [
     ConfirmDialogComponent

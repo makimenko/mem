@@ -1,23 +1,25 @@
 <mat-accordion multi="false">
-  <mat-expansion-panel *ngFor="let group of event.groups">
+  <mat-expansion-panel #currTab *ngFor="let group of event.groups">
     <mat-expansion-panel-header>
       {{group.name}}
     </mat-expansion-panel-header>
 
-    <mat-form-field style="width:50%">
-      <input matInput [(ngModel)]="group.name" placeholder="Group Name">
-    </mat-form-field>
+    <div *ngIf="currTab.expanded">
+      <mat-form-field style="width:50%">
+        <input matInput [(ngModel)]="group.name" placeholder="Group Name">
+      </mat-form-field>
 
-    <h3>Visuals</h3>
-    <app-group-visual-content [group]="group"></app-group-visual-content>
+      <h3>Visuals</h3>
+      <app-group-visual-content [group]="group"></app-group-visual-content>
 
-    <h3>List of Questions with Answer Options</h3>
-    <app-question-list [group]="group"></app-question-list>
+      <h3>List of Questions with Answer Options</h3>
+      <app-question-list [group]="group"></app-question-list>
 
-    <mat-action-row>
-      <button mat-raised-button (click)="deleteGroup(group)" color="accent">
-        <mat-icon>delete</mat-icon> Delete Group</button>
-    </mat-action-row>
+      <mat-action-row>
+        <button mat-raised-button (click)="deleteGroup(group)" color="accent">
+          <mat-icon>delete</mat-icon> Delete Group</button>
+      </mat-action-row>
+    </div>
   </mat-expansion-panel>
 </mat-accordion>
 <br>

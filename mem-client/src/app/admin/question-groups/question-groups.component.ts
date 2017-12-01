@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import * as API from '../../api-generated';
 import { UUID } from "../../utils";
+import { MatDialog } from '@angular/material';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-question-groups',
@@ -11,7 +13,7 @@ export class QuestionGroupsComponent implements OnInit {
 
   @Input() event: API.Event;
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
   }
@@ -30,7 +32,16 @@ export class QuestionGroupsComponent implements OnInit {
     if (index < 0) {
       throw Error("Group could not be deleted, because it was not found!");
     }
-    this.event.groups.splice(index, 1);
+
+    let dialogRef = this.dialog.open(ConfirmDialogComponent);
+    dialogRef.afterClosed().subscribe(confirmed => {
+      console.log('The dialog was closed. confirmed=' + confirmed);
+      if (confirmed) {
+        this.event.groups.splice(index, 1);
+      }
+    });
+
+
   }
 
 }
