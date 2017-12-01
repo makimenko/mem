@@ -1,24 +1,16 @@
 package com.makimenko.mem.server;
 
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.converter.BufferedImageHttpMessageConverter;
-import org.springframework.http.converter.FormHttpMessageConverter;
-import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.filter.CommonsRequestLoggingFilter;
 import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-
-import com.makimenko.mem.server.api.EventApiController;
 
 @Configuration
 @EnableWebMvc
@@ -54,8 +46,6 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 		log.info("addResourceHandlers: Map download folder to {}", this.uploadDir);
 		registry.addResourceHandler("/download/**").addResourceLocations("file:" + uploadDir);
 	}
-	
-	
-	
+
 
 }

@@ -3,16 +3,15 @@ package com.makimenko.mem.server;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.ExitCodeGenerator;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.ContextConfiguration;
 
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
-
 @SpringBootApplication
-@EnableSwagger2
+@EnableAutoConfiguration
 @ComponentScan(basePackages = { "com.makimenko.mem.server" })
-@ContextConfiguration(classes = { AppConfig.class })
+@ContextConfiguration(classes = { AppConfig.class})
 public class Swagger2SpringBoot implements CommandLineRunner {
 
 	@Override

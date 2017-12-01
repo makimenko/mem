@@ -17,6 +17,7 @@
 		<path.server.generated>${basedir}/target/generated-sources/mem-server-generated</path.server.generated>
 		<path.client>${basedir}/../mem-client</path.client>
 		<path.client.api.generated>${path.client}/src/app/api-generated</path.client.api.generated>
+		<path.server>${basedir}/../mem-server</path.server>
 	</properties>
 
 	<build>
@@ -108,14 +109,39 @@
 							<arguments>
 								<argument>build</argument>
 								<argument>--env=prod</argument>
-								<argument>--build-optimizer</argument>
-								<argument>--aot</argument>
-								<argument>--prod</argument>
+								<!-- build-optimizer aot prod -->
+								<argument>--no-progress</argument>
 							</arguments>
 						</configuration>
 						<goals>
 							<goal>exec</goal>
 						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.0.2</version>
+				<executions>
+					<execution>
+						<id>copy-resources</id>
+						<phase>package</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${path.server}/src/main/resources/templates</outputDirectory>
+							<overwrite>true</overwrite>
+							<resources>
+								<resource>
+									<directory>${path.server}/src/main/resources/static</directory>
+									<filtering>true</filtering>
+									<includes>
+										<include>index.html</include>
+									</includes>
+								</resource>
+							</resources>
+						</configuration>
 					</execution>
 				</executions>
 			</plugin>
