@@ -1,6 +1,7 @@
 package com.makimenko.mem.server.api;
 
 import com.makimenko.mem.server.dao.GameDao;
+import com.makimenko.mem.server.dao.impl.GameDaoSimpleImpl;
 import com.makimenko.mem.server.model.Game;
 import com.makimenko.mem.server.model.GameOption;
 import com.makimenko.mem.server.model.GameType;

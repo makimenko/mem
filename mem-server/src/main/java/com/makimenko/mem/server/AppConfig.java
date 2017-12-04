@@ -12,6 +12,9 @@ import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import com.makimenko.mem.server.dao.GameDao;
+import com.makimenko.mem.server.dao.impl.GameDaoSimpleImpl;
+
 @Configuration
 @EnableWebMvc
 public class AppConfig extends WebMvcConfigurerAdapter {
@@ -47,5 +50,9 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 		registry.addResourceHandler("/download/**").addResourceLocations("file:" + uploadDir);
 	}
 
+	@Bean
+	public GameDao gameDao() {
+		return new GameDaoSimpleImpl();
+	}
 
 }
