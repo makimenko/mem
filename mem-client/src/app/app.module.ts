@@ -3,17 +3,41 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { HttpClientModule, HttpClient } from "@angular/common/http";
 import { ApiModule, BASE_PATH } from "./api-generated";
+import { environment } from "../environments/environment";
+import { MaterialDesignModule } from './material-design/material-design.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
+import { RouterModule, Routes} from '@angular/router';
+import { HomeComponent } from './home/home.component';
+import { AdminModule } from './admin/admin.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { GameModule } from './game/game.module';
+
+const appRoutes: Routes = [
+  { path: '', pathMatch: 'full', redirectTo: 'home' },
+  { path: 'home', component: HomeComponent }
+];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
-    ApiModule
+    BrowserAnimationsModule,
+    FormsModule,
+    ApiModule,
+    FlexLayoutModule,
+    MaterialDesignModule,
+    AdminModule,
+    GameModule,
+    RouterModule.forRoot(
+      appRoutes
+    )
   ],
   providers: [
-      { provide: BASE_PATH, useValue: 'http://localhost:8080' }
+    { provide: BASE_PATH, useValue: environment.servicebaseUrl }
   ],
   bootstrap: [
     AppComponent

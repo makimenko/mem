@@ -1,0 +1,16 @@
+<div class="options">
+  <div *ngIf="question.answers" fxLayout="column">
+    <div *ngFor="let answer of question.answers">
+      <mat-checkbox [(ngModel)]="answer.expected"></mat-checkbox>
+      <mat-form-field>
+        <input matInput autoFocus [(ngModel)]="answer.name" (keydown.enter)="newAnswer()" (keydown.backspace)="onBackspace(answer)">
+      </mat-form-field>
+      <button mat-button (click)="deleteAnswer(answer)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </div>
+  <button mat-button (click)="newAnswer()">
+    <mat-icon>add_box</mat-icon>
+  </button>
+</div>

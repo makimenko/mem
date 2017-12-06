@@ -1,56 +1,220 @@
 swagger: "2.0"
 info:
-  description: "Sample Description"
-  version: "1.0.0"
-  title: "Sample Project"
+  description: "Sample online questionarie with funny life memories"
+  version: "0.1.1"
+  title: "Memory Quiz"
   license:
     name: "Apache 2.0"
     url: "http://www.apache.org/licenses/LICENSE-2.0.html"
-basePath: "/"
+tags:
+  - name: question
+    description: "Everything related to Questions"
+  - name: upload
+    description: "Everything related to Upload"
+  - name: game
+    description: "Game Play"
 schemes:
 - "http"
 paths:
-  /profile/all:
+  /events/find:
     get:
-      summary: "Returns all profiles"
-      description: "Returns a map of Profile entries"
-      operationId: "getAllProfiles"
+      tags:
+        - question
+      summary: Finds events and return base information
+      description: "Finds events and return base information"
       produces:
-      - "application/json"
-      parameters: []
+        - application/json
       responses:
-        200:
-          description: "successful operation"
+        "200":
+          description: successful operation
           schema:
             type: array
             items:
-              $ref: "#/definitions/Profile"
-  /profile:
-    post:
-      parameters:
-        - name: profile
-          in: body
-          description: Create new profile
-          schema:
-            $ref: '#/definitions/Profile'
+              $ref: "#/definitions/Event"
+  /event/{uuid}:
+    get:
+      tags:
+        - question
+      summary: Return event detals
+      description: "Return event detals"
+      produces:
+        - application/json
+      parameters: 
+        - 
+          name: uuid
+          in: path
+          description: "Unique identifier of Event"
           required: true
+          type: "string"
       responses:
-        200:
-          description: Make a new profile
-              
+        "200":
+          description: successful operation
+          schema:
+            $ref: "#/definitions/Event"
+    delete:
+      tags:
+        - question
+      description: "Deletes a new event"
+      parameters: 
+        - name: uuid
+          in: path
+          description: "Event UUID for deletion from the database"
+          required: true
+          type: string
+      responses: 
+        "200":
+          description: "event response"
+  /event:
+    post:
+      tags:
+        - question
+      description: "Creates a new event"
+      produces: 
+        - "application/json"
+      parameters: 
+        - 
+          name: "event"
+          in: "body"
+          description: "Event to add to the database"
+          required: true
+          schema: 
+            $ref: "#/definitions/Event"
+      responses: 
+        "200":
+          description: "event response"
+          schema: 
+            $ref: "#/definitions/Event"
+  /upload:
+    post:
+      tags:
+        - upload
+      description: "Upload image file to server"
+      consumes:
+        - multipart/form-data
+      produces: 
+        - "application/json"
+      parameters:
+      - name: file
+        in: formData
+        description: File content
+        required: true
+        type: file
+        minLength: 1
+        maxLength: 5000000  # ~5MB
+      responses:
+        default:
+          description: Returns file location on server
+          schema:
+            $ref: "#/definitions/UploadLocation"
+  /game/new:
+    post:
+      tags:
+        - game
+      summary: Return new game details
+      description: "Return new game details"
+      produces:
+        - application/json
+      parameters: 
+        - 
+          name: "gameOption"
+          in: "body"
+          description: "Game Options"
+          required: true
+          schema: 
+            $ref: "#/definitions/GameOption"
+      responses:
+        "200":
+          description: New game content
+          schema:
+            $ref: "#/definitions/Game"
 definitions:
-  Profile:
+  UploadLocation:
     type: "object"
-    required:
-      [userCode]
     properties:
-      userCode:
+      url:
+        type: string
+  BaseEntity:
+    type: "object"
+    properties:
+      uuid:
         type: string
       name:
         type: string
-      active:
-        type: boolean
-        default: true
-      birthDate:
-        type: string
-        format: date
+  Event:
+    allOf:
+      - $ref: '#/definitions/BaseEntity'
+      - type: object
+      - properties:
+          subTitle:
+            type: string
+          thumbnail:
+            $ref: "#/definitions/UploadLocation"
+          description:
+            type: string
+          groups:
+            type: array
+            items: 
+              $ref: '#/definitions/Group'
+  Group:
+    allOf:
+      - $ref: '#/definitions/BaseEntity'
+      - properties:
+          visualContents:
+            type: array
+            items: 
+              $ref: '#/definitions/VisualContent'
+          questions:
+            type: array
+            items: 
+              $ref: '#/definitions/Question'
+  VisualContent:
+    allOf:
+      - $ref: '#/definitions/BaseEntity'
+      - properties:
+          media: 
+            $ref: '#/definitions/UploadLocation'
+  Question:
+    allOf:
+      - $ref: '#/definitions/BaseEntity'
+      - properties:
+          answers:
+            type: array
+            items:
+              $ref: '#/definitions/Answer'
+  Answer:
+    allOf:
+      - $ref: '#/definitions/BaseEntity'
+      - properties:
+          expected:
+            type: boolean
+  GameStep:
+    allOf:
+      - $ref: '#/definitions/VisualContent'
+      - properties:
+          inputQuestion:
+            $ref: '#/definitions/Question'
+          outputAnswer:
+            $ref: '#/definitions/Question'
+  Game:
+    allOf:
+      - $ref: '#/definitions/BaseEntity'
+      - properties:
+          gameType:
+            $ref: '#/definitions/GameType'
+          gameSteps:
+            type: array
+            items: 
+              $ref: '#/definitions/GameStep'
+  GameType:
+    type: string
+    enum:
+      - "simple"
+  GameOption:
+    type: object
+    properties:
+      gameType:
+        $ref: '#/definitions/GameType'
+      maxQuestions:
+        type: integer
+      maxOptions:
+        type: integer

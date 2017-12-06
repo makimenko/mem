@@ -1,0 +1,17 @@
+<div fxLayout="row">
+  <div fxLayout="column">
+    <img src="{{event.thumbnail | serverFile }}" class="thumbnail" />
+    <app-upload-component accept="image/jpeg,image/png,image/gif" [multiple]="false" [uploadListener]="this"></app-upload-component>
+  </div>
+  <div fxLayout="column" fxFlex="auto">
+    <mat-form-field fxFlex="auto">
+      <input matInput [(ngModel)]="event.name" placeholder="Event Name">
+    </mat-form-field>
+    <mat-form-field fxFlex="auto">
+      <input matInput [(ngModel)]="event.subTitle" placeholder="Event Sub-Title">
+    </mat-form-field>
+    <mat-form-field>
+      <textarea matInput [(ngModel)]="event.description" placeholder="Description" rows="5"></textarea>
+    </mat-form-field>
+  </div>
+</div>

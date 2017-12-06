@@ -26,3 +26,4 @@ target/
 .project
 .classpath
 .settings/
+/mem-server/data/test.json

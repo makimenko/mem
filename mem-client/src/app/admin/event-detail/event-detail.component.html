@@ -1,0 +1,27 @@
+<mat-progress-bar mode="{{(busy?'indeterminate':'determinate')}}"></mat-progress-bar>
+
+<div *ngIf="event" class="container">
+
+  <div fxLayout="row" fxLayoutAlign="start">
+    <button mat-raised-button (click)="saveEvent()" color="primary">
+      <mat-icon>save</mat-icon> Save
+    </button>
+  </div>
+
+  <mat-vertical-stepper>
+    <mat-step label="Event Summary{{(event.name==undefined?'':': '+event.name)}}">
+      <app-event-summary [event]="event"></app-event-summary>
+    </mat-step>
+
+    <mat-step label="List of Questions">
+      <app-question-groups [event]="event"></app-question-groups>
+    </mat-step>
+  </mat-vertical-stepper>
+
+  <div fxLayout="row" fxLayoutAlign="start">
+    <button mat-raised-button (click)="saveEvent()" color="primary">
+      <mat-icon>save</mat-icon> Save
+    </button>
+  </div>
+
+</div>

@@ -1,0 +1,28 @@
+<mat-progress-bar mode="{{(busy?'indeterminate':'determinate')}}"></mat-progress-bar>
+
+<div fxLayout="row" fxLayoutWrap fxLayoutAlign="start" class="container">
+
+  <mat-card fxFlex="300px" *ngFor="let event of events" fxLayout="column" fxLayoutAlign="space-between">
+    <mat-card-header>
+      <mat-card-title>{{event.name}}</mat-card-title>
+      <mat-card-subtitle>{{event.subTitle}}</mat-card-subtitle>
+    </mat-card-header>
+    <div fxLayout="row" fxLayoutAlign="center">
+      <img src="{{event.thumbnail | serverFile}}" class="thumbnail">
+    </div>
+    <mat-card-content>
+      <p>{{event.description}}</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button routerLink="/admin/event-detail/{{event.uuid}}">EDIT</button>
+      <button mat-button (click)="delete(event)">DELETE</button>
+    </mat-card-actions>
+  </mat-card>
+
+  <mat-card fxFlex="300px"  fxLayout="row" fxLayoutAlign="center center" class="new">
+    <button mat-raised-button routerLink="/admin/event-detail/new" color="primary">
+       <mat-icon>create_new_folder</mat-icon> Create New Event
+    </button>
+  </mat-card>
+
+</div>

@@ -1,0 +1,26 @@
+.mat-card {
+    width:100%;
+    margin: 5px;
+    min-height:450px;
+}
+
+.mat-card.new {
+    background:#FAFAFA;
+}
+
+.mat-card-title {
+    font-size: 20px;
+}
+
+.thumbnail {
+    height: auto; 
+    width: auto; 
+    max-width: 300px;
+    max-height: 200px;
+    padding-bottom:10px;
+}
+
+.mat-card-content > p {
+    max-height:109px;
+    overflow: hidden;
+}
