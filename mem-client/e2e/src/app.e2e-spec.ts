@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('mem-client App', () => {
+describe('workspace-project App', () => {
   let page: AppPage;
 
   beforeEach(() => {
@@ -9,6 +9,6 @@ describe('mem-client App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to app!');
+    expect(page.getTitleText()).toEqual('Welcome to mem-client!');
   });
 });

@@ -22,118 +22,127 @@ import com.makimenko.mem.server.model.VisualContent;
 @Component
 public class GameDaoSimpleImpl implements GameDao {
 
-	private static final Logger log = LoggerFactory.getLogger(GameDaoSimpleImpl.class);
+    private static final Logger log = LoggerFactory.getLogger(GameDaoSimpleImpl.class);
 
-	private List<GameStep> allCombinations;
+    private List<GameStep> allCombinations;
 
-	@Autowired
-	private EventsDao eventsDao;
+    @Autowired
+    private EventsDao eventsDao;
 
-	@Override
-	public Game createGame(GameOption gameOption) {
-		log.info("Creating simple new game: {}", gameOption);
+    @Override
+    public Game createGame(GameOption gameOption) {
+        log.info("Requested new game: {}", gameOption);
 
-		// TODO: consider game option
-		Game game = new Game();
-		getGameSteps(gameOption).forEach(i -> game.addGameStepsItem(i));
+        if (gameOption.getMaxOptions() == null) {
+            gameOption.setMaxOptions(4);
+        }
 
-		log.debug("Game with {} questions created", game.getGameSteps().size());
-		return game;
-	}
+        if (gameOption.getMaxQuestions() == null) {
+            gameOption.setMaxQuestions(20);
+        }
 
-	private List<GameStep> getGameSteps(GameOption gameOption) {
-		log.debug("Pick {} game steps", gameOption);
-		if (this.allCombinations == null || this.allCombinations.size() < gameOption.getMaxQuestions()) {
-			reloadAllCombinations(gameOption);
-		}
-		List<GameStep> result = new ArrayList<>();
-		int size = this.allCombinations.size();
-		for (int i = 0; i < Math.min(gameOption.getMaxQuestions(), size); i++) {
-			result.add(this.allCombinations.get(0));
-			this.allCombinations.remove(0);
-		}
-		return result;
-	}
+        log.info("Creating simple new game: {}", gameOption);
+        // TODO: consider game option
+        Game game = new Game();
+        getGameSteps(gameOption).forEach(i -> game.addGameStepsItem(i));
 
-	private synchronized void reloadAllCombinations(GameOption gameOption) {
-		log.debug("Reload combinations");
-		this.allCombinations = new ArrayList<>();
+        log.debug("Game with {} questions created", game.getGameSteps().size());
+        return game;
+    }
 
-		eventsDao.getEvents().stream().forEach(event -> {
-			log.debug("Processing event: {}", event.getName());
-			event.getGroups().stream().forEach(group -> {
-				log.debug("Processing group: {}", group.getName());
+    private List<GameStep> getGameSteps(GameOption gameOption) {
+        log.debug("Pick {} game steps", gameOption);
+        if (this.allCombinations == null || this.allCombinations.size() < gameOption.getMaxQuestions()) {
+            reloadAllCombinations(gameOption);
+        }
+        List<GameStep> result = new ArrayList<>();
+        int size = this.allCombinations.size();
+        for (int i = 0; i < Math.min(gameOption.getMaxQuestions(), size); i++) {
+            result.add(this.allCombinations.get(0));
+            this.allCombinations.remove(0);
+        }
+        return result;
+    }
 
-				List<VisualContent> contents = group.getVisualContents();
-				List<Question> questions = group.getQuestions();
+    private synchronized void reloadAllCombinations(GameOption gameOption) {
+        log.debug("Reload combinations");
+        this.allCombinations = new ArrayList<>();
 
-				// IF question exists
-				if (questions != null && !questions.isEmpty()) {
-					if (contents == null) {
-						contents = new ArrayList<>();
-					}
-					if (contents.size() == 0) {
-						contents.add(new VisualContent());
-					}
+        eventsDao.getEvents().stream().forEach(event -> {
+            log.debug("Processing event: {}", event.getName());
+            event.getGroups().stream().forEach(group -> {
+                log.debug("Processing group: {}", group.getName());
 
-					contents.forEach(content -> {
-						questions.forEach(question -> {
-							List<Answer> answers = question.getAnswers();
+                List<VisualContent> contents = group.getVisualContents();
+                List<Question> questions = group.getQuestions();
 
-							// If at least 2 question options exists
-							if (answers != null && answers.size() > 1) {
+                // IF question exists
+                if (questions != null && !questions.isEmpty()) {
+                    if (contents == null) {
+                        contents = new ArrayList<>();
+                    }
+                    if (contents.size() == 0) {
+                        contents.add(new VisualContent());
+                    }
 
-								long numCorrectAnswers = answers.stream()
-										.filter(a -> a.isExpected() != null && a.isExpected().booleanValue()).count();
-								// If correct answer exists
-								if (numCorrectAnswers == 1) {
+                    contents.forEach(content -> {
+                        questions.forEach(question -> {
+                            List<Answer> answers = question.getAnswers();
 
-									Answer correctAnswer = answers.stream()
-											.filter(a -> a.isExpected() != null && a.isExpected().booleanValue())
-											.findFirst().orElse(null);
-									List<Answer> shuffledAnswers = answers.stream()
-											.filter(i -> i.isExpected() == null || !i.isExpected().booleanValue())
-											.collect(Collectors.toList());
-									Collections.shuffle(shuffledAnswers);
+                            // If at least 2 question options exists
+                            if (answers != null && answers.size() > 1) {
 
-									// remove options randomly
-									while (shuffledAnswers.size() > gameOption.getMaxOptions() - 1) {
-										shuffledAnswers.remove(shuffledAnswers.size() - 1);
-									}
-									shuffledAnswers.add(correctAnswer);
-									Collections.shuffle(shuffledAnswers);
+                                long numCorrectAnswers = answers.stream()
+                                        .filter(a -> a.isExpected() != null && a.isExpected().booleanValue()).count();
+                                // If correct answer exists
+                                if (numCorrectAnswers == 1) {
 
-									Question shuffledQuestion = new Question();
-									shuffledQuestion.setUuid(question.getUuid());
-									shuffledQuestion.setName(question.getName());
-									shuffledQuestion.setAnswers(shuffledAnswers);
+                                    Answer correctAnswer = answers.stream()
+                                            .filter(a -> a.isExpected() != null && a.isExpected().booleanValue())
+                                            .findFirst().orElse(null);
+                                    List<Answer> shuffledAnswers = answers.stream()
+                                            .filter(i -> i.isExpected() == null || !i.isExpected().booleanValue())
+                                            .collect(Collectors.toList());
+                                    Collections.shuffle(shuffledAnswers);
 
-									GameStep gameStep = new GameStep();
-									gameStep.setInputQuestion(shuffledQuestion);
-									if (content.getMedia() != null) {
-										gameStep.setMedia(content.getMedia());
-									}
+                                    // remove options randomly
+                                    while (shuffledAnswers.size() > gameOption.getMaxOptions() - 1) {
+                                        shuffledAnswers.remove(shuffledAnswers.size() - 1);
+                                    }
+                                    shuffledAnswers.add(correctAnswer);
+                                    Collections.shuffle(shuffledAnswers);
 
-									allCombinations.add(gameStep);
-								} else {
-									log.warn("Question [{}] has {} expected answers", question.getName(),
-											numCorrectAnswers);
-								}
-							} else {
-								log.warn("Question [{}] does not contain answer options");
-							}
-						});
-					});
-				} else {
-					log.warn("Group [{}] dont have questions", group.getName());
-				}
+                                    Question shuffledQuestion = new Question();
+                                    shuffledQuestion.setUuid(question.getUuid());
+                                    shuffledQuestion.setName(question.getName());
+                                    shuffledQuestion.setAnswers(shuffledAnswers);
 
-			});
-		});
-		log.debug("{} unique combinations found", allCombinations.size());
+                                    GameStep gameStep = new GameStep();
+                                    gameStep.setInputQuestion(shuffledQuestion);
+                                    if (content.getMedia() != null) {
+                                        gameStep.setMedia(content.getMedia());
+                                    }
 
-		Collections.shuffle(allCombinations);
-		log.debug("Shuffling complted");
-	}
+                                    allCombinations.add(gameStep);
+                                } else {
+                                    log.warn("Question [{}] has {} expected answers", question.getName(),
+                                            numCorrectAnswers);
+                                }
+                            } else {
+                                log.warn("Question [{}] does not contain answer options");
+                            }
+                        });
+                    });
+                } else {
+                    log.warn("Group [{}] dont have questions", group.getName());
+                }
+
+            });
+        });
+        log.debug("{} unique combinations found", allCombinations.size());
+
+        Collections.shuffle(allCombinations);
+        log.debug("Shuffling complted");
+    }
 
 }

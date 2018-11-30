@@ -27,3 +27,4 @@ target/
 .classpath
 .settings/
 /mem-server/data/test.json
+/.idea

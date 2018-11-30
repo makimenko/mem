@@ -5,10 +5,10 @@
 	<parent>
 		<groupId>com.makimenko</groupId>
 		<artifactId>mem</artifactId>
-		<version>0.1.0.0-SNAPSHOT</version>
+		<version>0.2.0.0-SNAPSHOT</version>
 	</parent>
 	<artifactId>mem-server</artifactId>
-	<name>Server Application (Spring Boot)</name>
+	<name>Server</name>
 
 	<dependencies>
 		<dependency>
