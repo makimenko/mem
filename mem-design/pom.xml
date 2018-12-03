@@ -10,13 +10,12 @@
         <version>0.2.0.0-SNAPSHOT</version>
     </parent>
     <artifactId>mem-design</artifactId>
-    <name>Design Generator</name>
 
     <properties>
         <path.swagger>${basedir}/src/main/resources/mem.yaml</path.swagger>
-        <path.server.generated>${basedir}/target/generated-sources/mem-server-generated</path.server.generated>
+        <path.server.api>${basedir}/../mem-server-api</path.server.api>
         <path.client>${basedir}/../mem-client</path.client>
-        <path.client.api.generated>${path.client}/src/app/api-generated</path.client.api.generated>
+        <path.client.api>${path.client}/src/app/api-generated</path.client.api>
         <path.server>${basedir}/../mem-server</path.server>
     </properties>
 
@@ -34,19 +33,21 @@
                         <configuration>
                             <inputSpec>${path.swagger}</inputSpec>
                             <language>spring</language>
-                            <output>${path.server.generated}</output>
+                            <output>${path.server.api}</output>
                             <configOptions>
                                 <sourceFolder>src/main/java</sourceFolder>
                                 <groupId>com.makimenko</groupId>
-                                <artifactId>mem-server-generated</artifactId>
+                                <artifactId>mem-server-api</artifactId>
                                 <artifactVersion>${project.version}</artifactVersion>
                                 <basePackage>com.makimenko.mem.server</basePackage>
                                 <configPackage>com.makimenko.mem.server.config</configPackage>
                                 <library>spring-mvc</library>
+                                <hideGenerationTimestamp>true</hideGenerationTimestamp>
                             </configOptions>
                             <modelPackage>com.makimenko.mem.server.model</modelPackage>
                             <apiPackage>com.makimenko.mem.server.api</apiPackage>
                             <invokerPackage>com.makimenko.mem.server.invoke</invokerPackage>
+                            <templateDirectory>src/main/resources/swagger-custom-mustache/JavaSpring</templateDirectory>
                         </configuration>
                     </execution>
                     <execution>
@@ -57,7 +58,7 @@
                         <configuration>
                             <inputSpec>${path.swagger}</inputSpec>
                             <language>typescript-angular</language>
-                            <output>${path.client.api.generated}</output>
+                            <output>${path.client.api}</output>
                             <configOptions>
                                 <npmName>mem-client-generated</npmName>
                                 <npmVersion>0.0.1</npmVersion>
@@ -83,9 +84,10 @@
                                 <argument>clean</argument>
                                 <argument>install</argument>
                             </arguments>
-                            <workingDirectory>${path.server.generated}</workingDirectory>
+                            <workingDirectory>${path.server.api}</workingDirectory>
                         </configuration>
                     </execution>
+
                     <execution>
                         <id>exec-npm-install</id>
                         <phase>compile</phase>
@@ -109,8 +111,6 @@
                             <arguments>
                                 <argument>build</argument>
                                 <argument>--prod</argument>
-                                <!-- build-optimizer aot prod -->
-                                <argument>--no-progress</argument>
                                 <argument>--output-path=../mem-server/src/main/resources/static</argument>
                             </arguments>
                         </configuration>
@@ -118,6 +118,7 @@
                             <goal>exec</goal>
                         </goals>
                     </execution>
+
                 </executions>
             </plugin>
         </plugins>

@@ -22,8 +22,6 @@ import com.makimenko.mem.server.model.Event;
 
 import io.swagger.annotations.ApiParam;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2017-11-17T15:15:20.914+02:00")
-
 @CrossOrigin("*")
 @Controller
 public class EventApiController implements EventApi {

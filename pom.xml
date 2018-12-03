@@ -6,7 +6,6 @@
 	<groupId>com.makimenko</groupId>
 	<artifactId>mem</artifactId>
 	<version>0.2.0.0-SNAPSHOT</version>
-	<name>Parent Project</name>
 	<packaging>pom</packaging>
 
 	<properties>
@@ -20,6 +19,7 @@
 
 	<modules>
 		<module>mem-design</module>
+		<module>mem-server-api</module>
 		<module>mem-server</module>
 	</modules>
 
@@ -40,7 +40,7 @@
 
 			<dependency>
 				<groupId>com.makimenko</groupId>
-				<artifactId>mem-server-generated</artifactId>
+				<artifactId>mem-server-api</artifactId>
 				<version>${project.version}</version>
 				<exclusions>
 					<exclusion>
@@ -57,12 +57,12 @@
 			<dependency>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-starter-web</artifactId>
-				<version>1.5.8.RELEASE</version>
+				<version>1.5.18.RELEASE</version>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-starter-tomcat</artifactId>
-				<version>1.5.8.RELEASE</version>
+				<version>1.5.18.RELEASE</version>
 			</dependency>
 
 			<dependency>
@@ -90,13 +90,13 @@
 			<dependency>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-starter-test</artifactId>
-				<version>1.5.8.RELEASE</version>
+				<version>1.5.18.RELEASE</version>
 				<scope>test</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-starter-thymeleaf</artifactId>
-				<version>1.5.9.RELEASE</version>
+				<version>1.5.18.RELEASE</version>
 			</dependency>
 
 		</dependencies>
@@ -121,20 +121,12 @@
 				<plugin>
 					<groupId>org.springframework.boot</groupId>
 					<artifactId>spring-boot-maven-plugin</artifactId>
-					<version>1.5.8.RELEASE</version>
+					<version>1.5.18.RELEASE</version>
 					<executions>
 						<execution>
 							<goals>
 								<goal>repackage</goal>
 							</goals>
-							<configuration>
-								<additionalProperties>
-									<encoding.source>${project.build.sourceEncoding}</encoding.source>
-									<encoding.reporting>${project.reporting.outputEncoding}</encoding.reporting>
-									<java.source>${maven.compiler.source}</java.source>
-									<java.target>${maven.compiler.target}</java.target>
-								</additionalProperties>
-							</configuration>
 						</execution>
 					</executions>
 				</plugin>
