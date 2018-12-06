@@ -30,6 +30,7 @@ const appRoutes: Routes = [
     ApiModule,
     FlexLayoutModule,
     MaterialDesignModule,
+    HttpClientModule,
     AdminModule,
     GameModule,
     RouterModule.forRoot(
