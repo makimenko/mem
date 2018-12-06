@@ -27,7 +27,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.List;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2017-11-25T11:32:24.000+02:00")
 
 @CrossOrigin("*")
 @Controller

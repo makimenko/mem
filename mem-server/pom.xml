@@ -8,12 +8,12 @@
 		<version>0.2.0.0-SNAPSHOT</version>
 	</parent>
 	<artifactId>mem-server</artifactId>
-	<name>Server</name>
+
 
 	<dependencies>
 		<dependency>
 			<groupId>com.makimenko</groupId>
-			<artifactId>mem-server-generated</artifactId>
+			<artifactId>mem-server-api</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

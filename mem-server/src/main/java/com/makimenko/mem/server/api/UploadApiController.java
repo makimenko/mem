@@ -26,7 +26,6 @@ import com.makimenko.mem.server.model.UploadLocation;
 
 import io.swagger.annotations.ApiParam;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2017-11-21T21:51:26.393+02:00")
 
 @CrossOrigin("*")
 @Controller

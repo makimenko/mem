@@ -17,7 +17,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.makimenko.mem.server.dao.EventsDao;
 import com.makimenko.mem.server.model.Event;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2017-11-17T15:15:20.914+02:00")
 
 @CrossOrigin("*")
 @Controller
