@@ -13,12 +13,13 @@ This repository includes sample quiz game.
 
 # Build and Run
 ## Pre-requisites
-- Maven
-- Node.js and npm
+- [Maven](https://maven.apache.org)
+- [Node.js](https://nodejs.org)
+- [Angular](https://angular.io)
 
 ## Buld
 ```
-mvn install
+mvn install -Pnpm
 ```
 
 ## Run

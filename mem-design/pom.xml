@@ -74,9 +74,8 @@
 
     <profiles>
         <profile>
-            <id>default</id>
+            <id>npm</id>
             <build>
-
                 <plugins>
                     <plugin>
                         <groupId>org.codehaus.mojo</groupId>
@@ -97,7 +96,6 @@
                                     <workingDirectory>${path.server.api}</workingDirectory>
                                 </configuration>
                             </execution>
-
                             <execution>
                                 <id>exec-npm-install</id>
                                 <phase>compile</phase>
