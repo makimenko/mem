@@ -74,7 +74,7 @@
 
     <profiles>
         <profile>
-            <id>npm</id>
+            <id>default</id>
             <build>
 
                 <plugins>
