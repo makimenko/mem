@@ -68,60 +68,72 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>build-module</id>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <configuration>
-                            <executable>mvn</executable>
-                            <arguments>
-                                <argument>clean</argument>
-                                <argument>install</argument>
-                            </arguments>
-                            <workingDirectory>${path.server.api}</workingDirectory>
-                        </configuration>
-                    </execution>
 
-                    <execution>
-                        <id>exec-npm-install</id>
-                        <phase>compile</phase>
-                        <configuration>
-                            <workingDirectory>${path.client}</workingDirectory>
-                            <executable>npm</executable>
-                            <arguments>
-                                <argument>install</argument>
-                            </arguments>
-                        </configuration>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>exec-ng-build</id>
-                        <phase>prepare-package</phase>
-                        <configuration>
-                            <workingDirectory>${path.client}</workingDirectory>
-                            <executable>ng</executable>
-                            <arguments>
-                                <argument>build</argument>
-                                <argument>--prod</argument>
-                                <argument>--output-path=../mem-server/src/main/resources/static</argument>
-                            </arguments>
-                        </configuration>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                    </execution>
-
-                </executions>
-            </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>default</id>
+            <build>
+
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>build-module</id>
+                                <phase>generate-sources</phase>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <configuration>
+                                    <executable>mvn</executable>
+                                    <arguments>
+                                        <argument>clean</argument>
+                                        <argument>install</argument>
+                                    </arguments>
+                                    <workingDirectory>${path.server.api}</workingDirectory>
+                                </configuration>
+                            </execution>
+
+                            <execution>
+                                <id>exec-npm-install</id>
+                                <phase>compile</phase>
+                                <configuration>
+                                    <workingDirectory>${path.client}</workingDirectory>
+                                    <executable>npm</executable>
+                                    <arguments>
+                                        <argument>install</argument>
+                                    </arguments>
+                                </configuration>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>exec-ng-build</id>
+                                <phase>prepare-package</phase>
+                                <configuration>
+                                    <workingDirectory>${path.client}</workingDirectory>
+                                    <executable>ng</executable>
+                                    <arguments>
+                                        <argument>build</argument>
+                                        <argument>--prod</argument>
+                                        <argument>--output-path=../mem-server/src/main/resources/static</argument>
+                                    </arguments>
+                                </configuration>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                            </execution>
+
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 </project>
