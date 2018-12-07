@@ -28,3 +28,4 @@ target/
 .settings/
 /mem-server/data/test.json
 /.idea
+*.iml
