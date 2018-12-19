@@ -1,30 +1,44 @@
 <div *ngIf="currentGameStep && !showingGameEnd" fxLayout="row" class="media" fxLayoutAlign="end end">
-
-    <div fxFlex="auto" class="media" [style]="getQuestionContentMediaStyle()" >
+    <div fxFlex="auto" class="media" [style]="getQuestionContentMediaStyle(currentMedia)">
         <div fxFlex="600px" class="content" fxLayout="column" fxLayoutAlign="end end">
-                <mat-progress-bar mode="determinate" [value]="progress"></mat-progress-bar>
-                <div class="question">
-                    <h1>
-                        {{currentGameStep.inputQuestion.name}}
-                    </h1>
-                </div>
-                <div [class]="(showingStepResult?(lastStepCorrect?'options correct':'options incorrect'):'options')" fxLayout="row" fxLayoutWrap
-                    fxLayoutAlign="center">
-                    <button mat-raised-button fxFlex="40%" *ngFor="let answer of currentGameStep.inputQuestion.answers" (click)="selectAnswer(answer)"
-                        [disabled]="showingStepResult">
-                        <span [class]="(showingStepResult?(answer.expected?'expected':'unexpected')+' '+(answer==lastAnswer?'selected':''):'')">
-                            {{answer.name}}
-                        </span>
-                    </button>
-                </div>
+            <mat-progress-bar mode="determinate" [value]="progress"></mat-progress-bar>
+            <div class="question">
+                <h1>
+                    {{currentGameStep.inputQuestion.name}}
+                </h1>
             </div>
+
+            <div [@changeState]="showingStepResult" class="explanation" *ngIf="showingStepResult && currentGameStep.inputQuestion.explanation">
+                <h2>
+                    <br>
+                    {{currentGameStep.inputQuestion.explanation.comments}}
+                    <br>
+                    <br>
+                    <br>
+                    <button mat-raised-button (click)="nextStep()">
+                        <span>Next</span>
+                    </button>
+                </h2>
+            </div>
+
+            <div [class]="(showingStepResult?(lastStepCorrect?'options correct':'options incorrect'):'options')"
+                fxLayout="row" fxLayoutWrap fxLayoutAlign="center">
+                <button mat-raised-button fxFlex="40%" *ngFor="let answer of currentGameStep.inputQuestion.answers"
+                    (click)="selectAnswer(answer)" [disabled]="showingStepResult">
+                    <span [class]="(showingStepResult?(answer.expected?'expected':'unexpected')+' '+(answer==lastAnswer?'selected':''):'')">
+                        {{answer.name}}
+                    </span>
+                </button>
+            </div>
+        </div>
     </div>
 </div>
 
 <div *ngIf="showingGameEnd" class="results">
     <div fxLayout="column" fxLayoutAlign="start center">
         <h1>Results</h1>
-        <h3 [class]="(stats.correct / stats.total * 100 > 80 ? 'expected':'unexpected')">{{stats.correct / stats.total * 100 | number : '1.2-2'}}%</h3>
+        <h3 [class]="(stats.correct / stats.total * 100 > 80 ? 'expected':'unexpected')">{{stats.correct / stats.total
+            * 100 | number : '1.2-2'}}%</h3>
         <h4>{{stats.correct}} / {{stats.total}}</h4>
 
         <button mat-raised-button routerLink="/gameSelect" color="accent">

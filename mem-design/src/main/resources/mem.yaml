@@ -181,12 +181,22 @@ definitions:
             type: array
             items:
               $ref: '#/definitions/Answer'
+          explanation:
+            $ref: '#/definitions/Explanation'
   Answer:
     allOf:
       - $ref: '#/definitions/BaseEntity'
       - properties:
           expected:
             type: boolean
+  Explanation:
+    allOf:
+      - $ref: '#/definitions/BaseEntity'
+      - properties:
+          comments:
+            type: string
+          media:
+            $ref: "#/definitions/UploadLocation"
   GameStep:
     allOf:
       - $ref: '#/definitions/VisualContent'

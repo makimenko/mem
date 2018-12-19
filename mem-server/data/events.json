@@ -53,30 +53,13 @@
                 "uuid": "23d7101a-b415-4a7b-83d3-e9f29d6d16b2",
                 "name": "Talinn"
               }
-            ]
-          },
-          {
-            "uuid": "52115ea9-51d2-449c-aa2e-71d0097e7450",
-            "name": "When photo was taken?",
-            "answers": [
-              {
-                "uuid": "803b843d-09fa-4e69-b81b-4ac6822b7a25",
-                "name": "2015",
-                "expected": true
-              },
-              {
-                "uuid": "9ff3da14-65bf-4f55-8990-7951a204032a",
-                "name": "2016"
-              },
-              {
-                "uuid": "cebb01fd-8a6a-403c-ab8a-29aea0edf07f",
-                "name": "2013"
-              },
-              {
-                "uuid": "1ee476c7-85b7-4b21-aebe-d72a542125cc",
-                "name": "2011"
+            ],
+            "explanation": {
+              "comments": "Hey! The correct answer is London!",
+              "media": {
+                "url": "explanation.png"
               }
-            ]
+            }
           }
         ]
       },
@@ -119,30 +102,13 @@
                 "uuid": "6e324a78-c4a0-4b23-9bb0-89e2cb41a311",
                 "name": "Moscow"
               }
-            ]
-          },
-          {
-            "uuid": "8541d2a3-b858-482a-b01e-259eb1513012",
-            "name": "When a photo was taken?",
-            "answers": [
-              {
-                "uuid": "ae57833a-0d1f-4d55-8d9b-83dd2c1b1d2f",
-                "name": "2017",
-                "expected": true
-              },
-              {
-                "uuid": "c062cf45-5952-408d-99b2-4cd2dd2ae8e4",
-                "name": "2016"
-              },
-              {
-                "uuid": "03c2c66b-1e06-41a5-82f5-b57ba7b95271",
-                "name": "2015"
-              },
-              {
-                "uuid": "8e82fd69-8f2c-4b2a-9b6f-f2ac5afa4f53",
-                "name": "2014"
+            ],
+            "explanation": {
+              "comments": "Hello, there! It\u0027s Riga! Trust me!",
+              "media": {
+                "url": "explain2.jpg"
               }
-            ]
+            }
           }
         ]
       }
