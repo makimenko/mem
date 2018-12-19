@@ -10,7 +10,7 @@ import org.springframework.test.context.ContextConfiguration;
 
 @SpringBootApplication
 @EnableAutoConfiguration
-@ComponentScan(basePackages = { "com.makimenko.mem.server" })
+@ComponentScan(basePackages = { "com.makimenko.mem.server.api" })
 @ContextConfiguration(classes = { AppConfig.class})
 public class Swagger2SpringBoot implements CommandLineRunner {
 

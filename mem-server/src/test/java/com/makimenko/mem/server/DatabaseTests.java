@@ -13,11 +13,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.makimenko.mem.server.dao.EventsDao;
 import com.makimenko.mem.server.model.Event;
 
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@EnableSwagger2
 @ComponentScan(basePackages = { "com.makimenko.mem.server" })
 public class DatabaseTests {
 

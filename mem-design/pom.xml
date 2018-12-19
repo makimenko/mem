@@ -32,22 +32,28 @@
                         </goals>
                         <configuration>
                             <inputSpec>${path.swagger}</inputSpec>
-                            <language>spring</language>
+                            <language>jaxrs</language>
                             <output>${path.server.api}</output>
                             <configOptions>
+
                                 <sourceFolder>src/main/java</sourceFolder>
+                                <basePackage>com.makimenko.mem.server</basePackage>
+                                <configPackage>com.makimenko.mem.server.config</configPackage>
+                                <hideGenerationTimestamp>true</hideGenerationTimestamp>
+
                                 <groupId>com.makimenko</groupId>
                                 <artifactId>mem-server-api</artifactId>
                                 <artifactVersion>${project.version}</artifactVersion>
-                                <basePackage>com.makimenko.mem.server</basePackage>
-                                <configPackage>com.makimenko.mem.server.config</configPackage>
-                                <library>spring-mvc</library>
-                                <hideGenerationTimestamp>true</hideGenerationTimestamp>
+                                <library>jersey2</library>
                             </configOptions>
+
                             <modelPackage>com.makimenko.mem.server.model</modelPackage>
                             <apiPackage>com.makimenko.mem.server.api</apiPackage>
                             <invokerPackage>com.makimenko.mem.server.invoke</invokerPackage>
-                            <templateDirectory>src/main/resources/swagger-custom-mustache/JavaSpring</templateDirectory>
+
+
+                            <!--
+                            <templateDirectory>src/main/resources/swagger-custom-mustache/JavaSpring</templateDirectory>-->
                         </configuration>
                     </execution>
                     <execution>

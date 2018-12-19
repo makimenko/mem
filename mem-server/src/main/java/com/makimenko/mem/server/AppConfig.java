@@ -48,6 +48,7 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		log.info("addResourceHandlers: Map download folder to {}", this.uploadDir);
 		registry.addResourceHandler("/download/**").addResourceLocations("file:" + uploadDir);
+
 	}
 
 	@Bean
