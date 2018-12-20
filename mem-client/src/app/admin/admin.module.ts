@@ -37,9 +37,7 @@ const adminRoutes: Routes = [
     FlexLayoutModule,
     PipesModule,
     MatDialogModule,
-    RouterModule.forRoot(
-      adminRoutes
-    )
+    RouterModule.forRoot(adminRoutes)
   ],
   declarations: [
     EventsComponent,

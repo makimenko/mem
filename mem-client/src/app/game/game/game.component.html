@@ -1,5 +1,7 @@
 <div *ngIf="currentGameStep && !showingGameEnd" fxLayout="row" class="media" fxLayoutAlign="end end">
-    <div fxFlex="auto" class="media" [style]="getQuestionContentMediaStyle(currentMedia)">
+    <div [@changeState]="showingStepResult" fxFlex="auto" class="media" [ngStyle]="{ 'background-image': 'url( '+currentImageUrl +')'}">
+        
+
         <div fxFlex="600px" class="content" fxLayout="column" fxLayoutAlign="end end">
             <mat-progress-bar mode="determinate" [value]="progress"></mat-progress-bar>
             <div class="question">
@@ -9,16 +11,15 @@
             </div>
 
             <div [@changeState]="showingStepResult" class="explanation" *ngIf="showingStepResult && currentGameStep.inputQuestion.explanation">
-                <h2>
-                    <br>
+                <p>
                     {{currentGameStep.inputQuestion.explanation.comments}}
-                    <br>
-                    <br>
-                    <br>
-                    <button mat-raised-button (click)="nextStep()">
-                        <span>Next</span>
-                    </button>
-                </h2>
+                </p>
+                <button mat-raised-button (click)="nextStep()">
+                    <span>NEXT QUESTION</span>
+                </button>
+                <br>
+                <br>
+                <br>
             </div>
 
             <div [class]="(showingStepResult?(lastStepCorrect?'options correct':'options incorrect'):'options')"
