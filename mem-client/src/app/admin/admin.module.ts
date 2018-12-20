@@ -18,6 +18,7 @@ import { MatDialogModule } from '@angular/material';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { AdminHomeComponent } from './admin-home/admin-home.component';
 import { AutoFocusDirective } from './question-answers/auto-focus.directive';
+import { QuestionExplanationComponent } from '../admin/question-explanation/question-explanation.component';
 
 const adminRoutes: Routes = [
   { path: 'admin', component: AdminHomeComponent 
@@ -36,9 +37,7 @@ const adminRoutes: Routes = [
     FlexLayoutModule,
     PipesModule,
     MatDialogModule,
-    RouterModule.forRoot(
-      adminRoutes
-    )
+    RouterModule.forRoot(adminRoutes)
   ],
   declarations: [
     EventsComponent,
@@ -52,7 +51,8 @@ const adminRoutes: Routes = [
     GroupVisualContentComponent,
     ConfirmDialogComponent,
     AdminHomeComponent,
-    AutoFocusDirective
+    AutoFocusDirective,
+    QuestionExplanationComponent
   ],
   entryComponents: [
     ConfirmDialogComponent

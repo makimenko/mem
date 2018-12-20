@@ -116,6 +116,7 @@ public class GameDaoSimpleImpl implements GameDao {
                                     shuffledQuestion.setUuid(question.getUuid());
                                     shuffledQuestion.setName(question.getName());
                                     shuffledQuestion.setAnswers(shuffledAnswers);
+                                    shuffledQuestion.setExplanation(question.getExplanation());
 
                                     GameStep gameStep = new GameStep();
                                     gameStep.setInputQuestion(shuffledQuestion);

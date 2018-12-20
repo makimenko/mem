@@ -5,10 +5,15 @@ app-game, .media, content {
 }
 
 .media {
-  background-color: black;
+  background-color: rgba(200,200,200,0.1);
   background-repeat: no-repeat;
-  background-position: right;
+  background-position: center;
   background-size: contain;
+ 
+}
+
+.content {
+  margin-left: 10px;
 }
 
 .results > * > h3 {
@@ -25,11 +30,23 @@ app-game, .media, content {
   text-align: center;
 }
 
+.explanation {
+  background: rgba(200,200,200,0.9);
+  width:100%;
+  text-align: center;
+}
+
+.explanation p {
+  font-size: 23px;
+  padding:20px;
+}
 .options {
   background: rgba(200,200,200,0.5);
   width:100%;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-left:50px;
+  margin-bottom:10px;
 }
 
 .correct {
@@ -45,11 +62,13 @@ app-game, .media, content {
 }
 
 .incorrect > button {
-    background-color:#FFFFFF !important;
+    background-color:rgba(200,200,200,0.5) !important;
+    
+    
 }
 
 .correct > button {
-    background-color:#FFFFFF !important;
+    background-color:rgba(200,200,200,0.5) !important;
 }
 
 .expected {

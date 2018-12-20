@@ -26,7 +26,7 @@ export class GameSelectComponent implements OnInit {
     }
     this.gameService.gameNewPost(option).subscribe(game => {
       console.log("Game created");
-      console.log(game);
+      //console.log(game);
       if (game != undefined && game.gameSteps != undefined && game.gameSteps.length > 0) {
         this.sessionService.game = game;
         this.router.navigate(['/game']);

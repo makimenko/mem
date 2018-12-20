@@ -3,37 +3,33 @@ package com.makimenko.mem.server.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.makimenko.mem.server.model.Answer;
 import com.makimenko.mem.server.model.BaseEntity;
-import com.makimenko.mem.server.model.Explanation;
+import com.makimenko.mem.server.model.UploadLocation;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.util.ArrayList;
-import java.util.List;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * Question
+ * Explanation
  */
 @Validated
 
-public class Question   {
+public class Explanation   {
   @JsonProperty("uuid")
   private String uuid = null;
 
   @JsonProperty("name")
   private String name = null;
 
-  @JsonProperty("answers")
-  @Valid
-  private List<Answer> answers = null;
+  @JsonProperty("comments")
+  private String comments = null;
 
-  @JsonProperty("explanation")
-  private Explanation explanation = null;
+  @JsonProperty("media")
+  private UploadLocation media = null;
 
-  public Question uuid(String uuid) {
+  public Explanation uuid(String uuid) {
     this.uuid = uuid;
     return this;
   }
@@ -53,7 +49,7 @@ public class Question   {
     this.uuid = uuid;
   }
 
-  public Question name(String name) {
+  public Explanation name(String name) {
     this.name = name;
     return this;
   }
@@ -73,54 +69,45 @@ public class Question   {
     this.name = name;
   }
 
-  public Question answers(List<Answer> answers) {
-    this.answers = answers;
-    return this;
-  }
-
-  public Question addAnswersItem(Answer answersItem) {
-    if (this.answers == null) {
-      this.answers = new ArrayList<Answer>();
-    }
-    this.answers.add(answersItem);
+  public Explanation comments(String comments) {
+    this.comments = comments;
     return this;
   }
 
   /**
-   * Get answers
-   * @return answers
+   * Get comments
+   * @return comments
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public String getComments() {
+    return comments;
+  }
+
+  public void setComments(String comments) {
+    this.comments = comments;
+  }
+
+  public Explanation media(UploadLocation media) {
+    this.media = media;
+    return this;
+  }
+
+  /**
+   * Get media
+   * @return media
   **/
   @ApiModelProperty(value = "")
 
   @Valid
 
-  public List<Answer> getAnswers() {
-    return answers;
+  public UploadLocation getMedia() {
+    return media;
   }
 
-  public void setAnswers(List<Answer> answers) {
-    this.answers = answers;
-  }
-
-  public Question explanation(Explanation explanation) {
-    this.explanation = explanation;
-    return this;
-  }
-
-  /**
-   * Get explanation
-   * @return explanation
-  **/
-  @ApiModelProperty(value = "")
-
-  @Valid
-
-  public Explanation getExplanation() {
-    return explanation;
-  }
-
-  public void setExplanation(Explanation explanation) {
-    this.explanation = explanation;
+  public void setMedia(UploadLocation media) {
+    this.media = media;
   }
 
 
@@ -132,27 +119,27 @@ public class Question   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Question question = (Question) o;
-    return Objects.equals(this.uuid, question.uuid) &&
-        Objects.equals(this.name, question.name) &&
-        Objects.equals(this.answers, question.answers) &&
-        Objects.equals(this.explanation, question.explanation);
+    Explanation explanation = (Explanation) o;
+    return Objects.equals(this.uuid, explanation.uuid) &&
+        Objects.equals(this.name, explanation.name) &&
+        Objects.equals(this.comments, explanation.comments) &&
+        Objects.equals(this.media, explanation.media);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(uuid, name, answers, explanation);
+    return Objects.hash(uuid, name, comments, media);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Question {\n");
+    sb.append("class Explanation {\n");
     
     sb.append("    uuid: ").append(toIndentedString(uuid)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    answers: ").append(toIndentedString(answers)).append("\n");
-    sb.append("    explanation: ").append(toIndentedString(explanation)).append("\n");
+    sb.append("    comments: ").append(toIndentedString(comments)).append("\n");
+    sb.append("    media: ").append(toIndentedString(media)).append("\n");
     sb.append("}");
     return sb.toString();
   }
