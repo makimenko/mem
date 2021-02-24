@@ -69,7 +69,7 @@
 				<!-- can't understand why it's needed on some PCs -->
 				<groupId>org.hibernate</groupId>
 				<artifactId>hibernate-validator</artifactId>
-				<version>5.2.4.Final</version>
+				<version>5.2.5.Final</version>
 			</dependency>
 			<dependency>
 				<groupId>com.google.code.gson</groupId>
